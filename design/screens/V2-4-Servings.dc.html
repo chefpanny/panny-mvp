@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>4 · Select serving size</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700;9..144,900&amp;family=Yellowtail&amp;family=DM+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#1E2B45}a:hover{color:#000000}
+button,input{font-family:inherit}
+.btn:hover{color:#FFFFFF}
+:focus-visible{outline:3px solid #1E2B45;outline-offset:2px}
+.btn{display:flex;align-items:center;justify-content:center;min-height:56px;padding:0 24px;border-radius:14px;border:2px solid #1E2B45;background:#C8242B;color:#FFFFFF;font-weight:700;font-size:17px;text-decoration:none;box-shadow:4px 4px 0 #1E2B45;box-sizing:border-box}
+.back{width:44px;height:44px;border-radius:22px;display:flex;align-items:center;justify-content:center;color:#1E2B45}
+.bar{flex:1;height:6px;border-radius:3px;background:#1E2B45}
+.off{opacity:0.2}
+.tile{display:flex;flex-direction:column;align-items:flex-start;justify-content:space-between;height:132px;padding:16px 18px;border-radius:14px;border:2px solid #1E2B45;background:#FFFFFF;color:#1E2B45;text-align:left;box-sizing:border-box;cursor:pointer}
+.on{background:#1E2B45;color:#FBF1DC}
+.num{font-family:'Fraunces',Georgia,serif;font-weight:900;font-size:44px;line-height:1}
+.cap{font-size:15px;font-weight:700}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; background: #FBF1DC; font-family: 'DM Sans', sans-serif; color: #1E2B45; padding: 12px 24px 40px; display: flex; flex-direction: column; gap: 20px">
+<div style="display: flex; align-items: center; gap: 12px">
+<a href="V2-3-Avoid.dc.html" class="back" aria-label="Back"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"></path></svg></a>
+<div style="flex: 1; display: flex; gap: 6px"><span class="bar"></span><span class="bar"></span><span class="bar"></span><span class="bar off"></span><span class="bar off"></span><span class="bar off"></span></div>
+</div>
+<h1 style="margin: 0; font-family: 'Fraunces', Georgia, serif; font-weight: 900; font-size: 40px; line-height: 1; letter-spacing: -0.5px">How many are you feeding?</h1>
+<div role="group" aria-label="Servings" style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px">
+<sc-for list="{{opts}}" as="o" hint-placeholder-count="4">
+<sc-if value="{{o.on}}" hint-placeholder-val="{{ false }}"><button type="button" class="tile on" aria-pressed="true" onClick="{{o.pick}}"><span class="num">{{o.n}}</span><span class="cap">{{o.cap}}</span></button></sc-if>
+<sc-if value="{{o.notOn}}" hint-placeholder-val="{{ true }}"><button type="button" class="tile" aria-pressed="false" onClick="{{o.pick}}"><span class="num">{{o.n}}</span><span class="cap">{{o.cap}}</span></button></sc-if>
+</sc-for>
+</div>
+<p style="margin: 0; font-size: 15px">Every recipe and your list scale to this. Feeding 3 or 5? Pick the closest; you can change servings on any dinner.</p>
+<div style="flex: 1"></div>
+<a href="V2-4B-Household.dc.html" class="btn">Next</a>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { pick: '4' };
+  }
+  renderVals() {
+    var self = this;
+    var opts = [{ n: '1', cap: 'Just me' }, { n: '2', cap: 'Two of us' }, { n: '4', cap: 'Family of four' }, { n: '6', cap: 'Six or more' }].map(function (o) {
+      var on = self.state.pick === o.n;
+      return { n: o.n, cap: o.cap, on: on, notOn: !on, pick: function () { self.setState({ pick: o.n }); } };
+    });
+    return { opts: opts };
+  }
+}
+</script>
+</body>
+</html>

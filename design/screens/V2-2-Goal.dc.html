@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>2 · Pick a health goal, vote for the next one</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700;9..144,900&amp;family=Yellowtail&amp;family=DM+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#1E2B45}a:hover{color:#000000}
+button,input{font-family:inherit}
+.btn:hover{color:#FFFFFF}
+:focus-visible{outline:3px solid #1E2B45;outline-offset:2px}
+.btn{display:flex;align-items:center;justify-content:center;min-height:56px;padding:0 24px;border-radius:14px;border:2px solid #1E2B45;background:#C8242B;color:#FFFFFF;font-weight:700;font-size:17px;text-decoration:none;box-shadow:4px 4px 0 #1E2B45;box-sizing:border-box}
+.back{width:44px;height:44px;border-radius:22px;display:flex;align-items:center;justify-content:center;color:#1E2B45}
+.bar{flex:1;height:6px;border-radius:3px;background:#1E2B45}
+.off{opacity:0.2}
+.opt{display:flex;align-items:center;justify-content:space-between;gap:10px;height:56px;padding:0 18px;border-radius:14px;border:2px solid #1E2B45;background:#FFFFFF;color:#1E2B45;font-weight:700;font-size:17px;text-align:left;width:100%;box-sizing:border-box;cursor:pointer}
+.on{background:#1E2B45;color:#FBF1DC}
+.vote{font-weight:500}
+.tag{font-size:12px;font-weight:700;padding:4px 9px;border-radius:999px;background:#E9B53F;color:#1E2B45;border:2px solid #E9B53F}
+.lab{font-size:13px;font-weight:700;letter-spacing:1px;text-transform:uppercase}
+</style>
+</helmet>
+<div style="width: 390px; height: 900px; box-sizing: border-box; background: #FBF1DC; font-family: 'DM Sans', sans-serif; color: #1E2B45; padding: 12px 24px 40px; display: flex; flex-direction: column; gap: 18px">
+<div style="display: flex; align-items: center; gap: 12px">
+<a href="V2-1-Welcome.dc.html" class="back" aria-label="Back"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"></path></svg></a>
+<div style="flex: 1; display: flex; gap: 6px"><span class="bar"></span><span class="bar off"></span><span class="bar off"></span><span class="bar off"></span><span class="bar off"></span><span class="bar off"></span></div>
+</div>
+<h1 style="margin: 0; font-family: 'Fraunces', Georgia, serif; font-weight: 900; font-size: 40px; line-height: 1; letter-spacing: -0.5px">What are you cooking for?</h1>
+<button type="button" class="opt on" aria-pressed="true">Healthy cholesterol<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"></path></svg></button>
+
+
+
+
+
+
+
+<span class="lab">Coming soon</span><span style="font-family: 'Fraunces', Georgia, serif; font-weight: 900; font-size: 21px; line-height: 1.15">Vote for what we cook for next</span><div role="radiogroup" aria-label="Vote for the next goal" style="display: flex; flex-direction: column; gap: 8px">
+<sc-for list="{{votes}}" as="v" hint-placeholder-count="3">
+<sc-if value="{{v.on}}" hint-placeholder-val="{{ false }}"><button type="button" role="radio" aria-checked="true" class="opt vote on" onClick="{{v.pick}}">{{v.label}}<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"></path></svg></button></sc-if>
+<sc-if value="{{v.notOn}}" hint-placeholder-val="{{ true }}"><button type="button" role="radio" aria-checked="false" class="opt vote" onClick="{{v.pick}}">{{v.label}}</button></sc-if>
+</sc-for>
+</div><label for="tellus" style="font-size: 14px; font-weight: 700; padding-top: 4px">Something else? Tell us.</label><input id="tellus" type="text" placeholder="e.g. pregnancy, kids' lunches" style="height: 52px; padding: 0 16px; border-radius: 14px; border: 2px solid #1E2B45; background: #FFFFFF; font-size: 16px; color: #1E2B45; box-sizing: border-box"><div style="flex: 1"></div>
+<p style="margin: 0; font-size: 13px; line-height: 1.45">If you take cholesterol medication or manage a medical condition, check with your clinician or pharmacist before changing your diet.</p>
+<a href="V2-3-Avoid.dc.html" class="btn">Next</a>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":900}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { vote: 'More fiber and gut health' };
+  }
+  renderVals() {
+    var self = this;
+    var votes = ['More fiber and gut health', 'Steady energy', 'Prediabetes / blood sugar balance'].map(function (l) {
+      var on = self.state.vote === l;
+      return { label: l, on: on, notOn: !on, pick: function () { self.setState({ vote: on ? null : l }); } };
+    });
+    return { votes: votes };
+  }
+}
+</script>
+</body>
+</html>

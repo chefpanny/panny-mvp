@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>9 · Shop the week's list: check off, copy or share</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700;9..144,900&amp;family=Yellowtail&amp;family=DM+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#1E2B45}a:hover{color:#000000}
+button,input{font-family:inherit}
+.btn:hover{color:#FFFFFF}
+:focus-visible{outline:3px solid #1E2B45;outline-offset:2px}
+.btn{display:flex;align-items:center;justify-content:center;min-height:56px;padding:0 22px;border-radius:14px;border:2px solid #1E2B45;background:#C8242B;color:#FFFFFF;font-weight:700;font-size:17px;text-decoration:none;box-shadow:4px 4px 0 #1E2B45;box-sizing:border-box;cursor:pointer}
+.btn2{display:flex;align-items:center;justify-content:center;min-height:56px;padding:0 18px;border-radius:14px;border:2px solid #1E2B45;background:#FFFFFF;color:#1E2B45;font-weight:700;font-size:16px;box-shadow:4px 4px 0 #1E2B45;box-sizing:border-box;cursor:pointer}
+.icon{width:44px;height:44px;border-radius:22px;display:flex;align-items:center;justify-content:center;color:#1E2B45}
+.grp{font-size:13px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:0 4px}
+.box{border-radius:12px;border:2px solid #1E2B45;background:#FFFFFF;overflow:hidden}
+.row{display:flex;align-items:center;gap:12px;min-height:56px;padding:8px 14px;border-bottom:2px solid #F2E2BD;cursor:pointer}
+</style>
+</helmet>
+<div style="width: 390px; min-height: 1450px; box-sizing: border-box; background: #FBF1DC; font-family: 'DM Sans', sans-serif; color: #1E2B45; display: flex; flex-direction: column">
+<header style="height: 56px; padding: 0 8px; display: flex; align-items: center">
+<a href="V2-7-Week.dc.html" class="icon" aria-label="Back to this week"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"></path></svg></a>
+</header>
+<div style="padding: 0 24px 18px; display: flex; flex-direction: column; gap: 6px">
+<h1 style="margin: 0; font-family: 'Fraunces', Georgia, serif; font-weight: 900; font-size: 40px; line-height: 1; letter-spacing: -0.5px">This week's list</h1>
+<p style="margin: 0; font-size: 16px">3 dinners · {{left}} of {{total}} left to grab</p>
+<div style="margin-top: 6px; display: flex; gap: 10px; align-items: flex-start; padding: 12px 14px; border-radius: 12px; background: #A9D8C8; border: 2px solid #1E2B45; font-size: 14px; line-height: 1.45"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0; margin-top: 1px"><path d="M20 6L9 17l-5-5"></path></svg><span><strong>One list for your whole week.</strong> Swaps, moves and skips update it automatically, so nothing is ever doubled.</span></div>
+</div>
+<div style="padding: 0 16px; display: flex; flex-direction: column; gap: 18px">
+<sc-for list="{{groups}}" as="g" hint-placeholder-count="4">
+<section style="display: flex; flex-direction: column; gap: 8px" aria-label="{{g.name}}">
+<span class="grp">{{g.name}}</span>
+<div class="box">
+<sc-for list="{{g.items}}" as="i" hint-placeholder-count="4">
+<label for="{{i.id}}" class="row">
+<input type="checkbox" id="{{i.id}}" checked="{{i.got}}" onChange="{{i.toggle}}" style="width: 22px; height: 22px; margin: 0; accent-color: #1E2B45; flex-shrink: 0">
+<span style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px">
+<sc-if value="{{i.notGot}}" hint-placeholder-val="{{ true }}"><span style="font-size: 16px; font-weight: 500">{{i.name}}</span></sc-if>
+<sc-if value="{{i.got}}" hint-placeholder-val="{{ false }}"><span style="font-size: 16px; font-weight: 500; color: #5A6378; text-decoration: line-through">{{i.name}}</span></sc-if>
+<span style="font-size: 12px; color: #5A6378">For {{i.night}}</span>
+</span>
+<span style="font-size: 14px; font-weight: 700">{{i.amt}}</span>
+</label>
+</sc-for>
+</div>
+</section>
+</sc-for>
+<section aria-label="Already in your kitchen" style="padding: 16px; border-radius: 12px; background: #F2E2BD; display: flex; flex-direction: column; gap: 6px">
+<span style="font-size: 15px; font-weight: 700">Already in your kitchen</span>
+<span style="font-size: 14px; line-height: 1.5">Olive oil, garlic, onions, salt, black pepper, red pepper flakes</span>
+<a href="V2-5-Pantry.dc.html" style="font-size: 14px; font-weight: 700; min-height: 44px; display: inline-flex; align-items: center; align-self: flex-start">Edit your kitchen</a>
+</section>
+</div>
+<div style="flex: 1; min-height: 32px"></div>
+<footer style="position: sticky; bottom: 0; padding: 12px 16px 26px; background: #FBF1DC; border-top: 2px solid #1E2B45; display: flex; gap: 10px">
+<button type="button" class="btn2" style="flex-shrink: 0">Share</button>
+<button type="button" class="btn" style="flex: 1">Copy list</button>
+</footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":1450}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { got: { kale: true } };
+  }
+  renderVals() {
+    var self = this;
+    var got = this.state.got;
+    var data = [
+      { name: 'Produce', items: [
+        { k: 'kale', name: 'Lacinato kale', amt: '1 bunch', f: 'Mon' },
+        { k: 'lemon', name: 'Lemon', amt: '1', f: 'Mon' },
+        { k: 'onion', name: 'Yellow onion', amt: '1', f: 'Tue' },
+        { k: 'potato', name: 'Sweet potatoes', amt: '2 medium', f: 'Thu' },
+        { k: 'lime', name: 'Limes', amt: '2', f: 'Thu' }
+      ] },
+      { name: 'Canned and dry', items: [
+        { k: 'cannellini', name: 'Cannellini beans', amt: '1 can', f: 'Mon' },
+        { k: 'black', name: 'Black beans', amt: '1 can', f: 'Thu' },
+        { k: 'lentils', name: 'Brown lentils', amt: '½ cup dry', f: 'Tue' },
+        { k: 'pasta', name: 'Whole-wheat spaghetti', amt: '8 oz', f: 'Tue' },
+        { k: 'tomatoes', name: 'Crushed tomatoes', amt: '1 can (28 oz)', f: 'Tue' },
+        { k: 'broth', name: 'Vegetable broth', amt: '½ cup', f: 'Mon' },
+        { k: 'seeds', name: 'Pumpkin seeds', amt: '¼ cup', f: 'Thu' }
+      ] },
+      { name: 'Refrigerated', items: [
+        { k: 'turkey', name: 'Lean ground turkey (93%)', amt: '8 oz', f: 'Tue' },
+        { k: 'parm', name: 'Parmesan', amt: '¼ cup', f: 'Mon' }
+      ] },
+      { name: 'Bakery', items: [
+        { k: 'tortilla', name: 'Corn tortillas', amt: '8', f: 'Thu' },
+        { k: 'bread', name: 'Whole-grain bread', amt: '2 slices', f: 'Mon' }
+      ] }
+    ];
+    var total = 0, left = 0;
+    var groups = data.map(function (g) {
+      return { name: g.name, items: g.items.map(function (i) {
+        var on = !!got[i.k];
+        total += 1; if (!on) left += 1;
+        return { id: 'l-' + i.k, name: i.name, amt: i.amt, night: i.f, got: on, notGot: !on, toggle: function () { var n = Object.assign({}, self.state.got); n[i.k] = !n[i.k]; self.setState({ got: n }); } };
+      }) };
+    });
+    return { groups: groups, total: total, left: left };
+  }
+}
+</script>
+</body>
+</html>

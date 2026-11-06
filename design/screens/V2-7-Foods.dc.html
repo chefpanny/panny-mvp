@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>7 · Explore foods for healthy LDL, swap one you don't like</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700;9..144,900&amp;family=Yellowtail&amp;family=DM+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#1E2B45}a:hover{color:#000000}
+button{font-family:inherit}
+.btn:hover{color:#FFFFFF}
+:focus-visible{outline:3px solid #1E2B45;outline-offset:2px}
+.btn{display:flex;align-items:center;justify-content:center;min-height:56px;padding:0 24px;border-radius:14px;border:2px solid #1E2B45;background:#C8242B;color:#FFFFFF;font-weight:700;font-size:17px;text-decoration:none;box-shadow:4px 4px 0 #1E2B45;box-sizing:border-box}
+.food{border-radius:12px;border:2px solid #1E2B45;background:#FFFFFF;overflow:hidden}
+.head{display:flex;align-items:center;gap:12px;width:100%;min-height:72px;padding:10px 12px;border:0;background:transparent;text-align:left;color:#1E2B45;cursor:pointer}
+.ico{width:46px;height:46px;border-radius:23px;background:#F2E2BD;border:2px solid #1E2B45;display:flex;align-items:center;justify-content:center;flex-shrink:0;box-sizing:border-box}
+.fn{font-family:'Fraunces',Georgia,serif;font-weight:900;font-size:18px;line-height:1.1}
+.tier{display:inline-flex;align-items:center;gap:5px;height:24px;padding:0 8px 0 3px;border-radius:999px;border:2px solid #1E2B45;font-size:12px;font-weight:700;box-sizing:border-box;white-space:nowrap}
+.tl{width:18px;height:18px;border-radius:9px;background:#1E2B45;color:#FBF1DC;font-size:11px;display:inline-flex;align-items:center;justify-content:center}
+.body{display:flex;flex-direction:column;gap:10px;padding:0 14px 14px}
+.lab{font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase}
+.link{align-self:flex-start;display:inline-flex;align-items:center;gap:6px;min-height:44px;padding:0;border:0;background:transparent;color:#1E2B45;font-weight:700;font-size:14px;text-decoration:underline;cursor:pointer}
+</style>
+</helmet>
+<div style="position: relative; width: 390px; height: 1150px; box-sizing: border-box; background: #FBF1DC; font-family: 'DM Sans', sans-serif; color: #1E2B45; padding: 28px 24px 40px; display: flex; flex-direction: column; gap: 16px; overflow: hidden">
+<span style="font-size: 14px; font-weight: 700">You're all set.</span>
+<div style="display: flex; flex-direction: column; gap: 8px">
+<h1 style="margin: 0; font-family: 'Fraunces', Georgia, serif; font-weight: 900; font-size: 38px; line-height: 1.02; letter-spacing: -0.5px">Foods for healthy LDL</h1>
+<p style="margin: 0; font-size: 16px; line-height: 1.45">Your dinners lean on these {{countWord}}. Each one shows how strong the evidence is. Tap to see how it works.</p>
+</div>
+<div aria-label="Evidence tiers" style="display: flex; flex-direction: column; gap: 6px; padding: 12px 14px; border-radius: 12px; background: #F2E2BD">
+<span class="lab">How strong is the evidence?</span>
+<div style="display: flex; flex-direction: column; gap: 4px; font-size: 13px; line-height: 1.35">
+<span><strong>A</strong> · FDA-authorized health claim</span>
+<span><strong>B</strong> · Strong research, no authorized claim</span>
+<span><strong>C</strong> · Early research, promising but limited</span>
+</div>
+<a href="V2-7-AllFoods.dc.html" style="font-size: 13px; font-weight: 700; min-height: 32px; display: inline-flex; align-items: center">See all LDL foods and how we grade them</a>
+</div>
+<div style="display: flex; flex-direction: column; gap: 10px">
+<sc-for list="{{foods}}" as="f" hint-placeholder-count="4">
+<div class="food">
+<button type="button" class="head" aria-expanded="{{f.open}}" onClick="{{f.toggle}}">
+<span class="ico"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#1E2B45" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="{{f.d1}}"></path><path d="{{f.d2}}"></path><path d="{{f.d3}}"></path><path d="{{f.d4}}"></path></svg></span>
+<span style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 5px">
+<span class="fn">{{f.name}}</span>
+<span class="tier" style="align-self: flex-start; background: {{f.tierBg}}"><span class="tl">{{f.tier}}</span>{{f.tierLabel}}</span>
+</span>
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0; transform: rotate({{f.rot}}deg)"><path d="M6 9l6 6 6-6"></path></svg>
+</button>
+<sc-if value="{{f.open}}" hint-placeholder-val="{{ false }}">
+<div class="body">
+<span style="font-size: 14px; font-weight: 700">{{f.nutrient}}</span>
+<div style="display: flex; flex-direction: column; gap: 4px; padding: 12px 14px; border-radius: 10px; background: #FBF1DC">
+<span class="lab">How it works</span>
+<p style="margin: 0; font-size: 14px; line-height: 1.55">{{f.how}}</p>
+</div>
+<span style="font-size: 12px; line-height: 1.45; color: #5A6378">Source: {{f.src}}</span>
+<button type="button" class="link" onClick="{{f.swap}}"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9h13l-3-3"></path><path d="M20 15H7l3 3"></path></svg>{{f.swapLabel}}</button>
+</div>
+</sc-if>
+</div>
+</sc-for>
+</div>
+<p style="margin: 0; font-size: 12px; line-height: 1.45; color: #5A6378">Education, not medical advice. If you take cholesterol medication, check with your clinician or pharmacist before changing your diet.</p>
+<div style="flex: 1"></div>
+<a href="V2-7-Week.dc.html" class="btn">See my dinners</a>
+<sc-if value="{{toastOn}}" hint-placeholder-val="{{ false }}">
+<div role="status" style="position: absolute; left: 24px; right: 24px; bottom: 112px; padding: 12px 16px; border-radius: 12px; background: #1E2B45; color: #FBF1DC; font-size: 14px; line-height: 1.4">{{toast}}</div>
+</sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":1150}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { open: 'seeds', swapped: {}, toast: '' };
+  }
+  renderVals() {
+    var self = this;
+    var st = this.state;
+    var I = {
+      grain: ['M12 22V8', 'M12 8c0-2.5 1.5-4.5 3.5-5c0 2.5-1.5 4.5-3.5 5z', 'M12 8c0-2.5-1.5-4.5-3.5-5c0 2.5 1.5 4.5 3.5 5z', 'M12 14c0-2.5 1.5-4.5 3.5-5c0 2.5-1.5 4.5-3.5 5z'],
+      bean: ['M6 15c-2-2-2-6 1-7.5c2.5-1.2 4 .5 4 2.5c0 1.5 1.5 2 2.5 2.5c2 1 2 4-.5 5.5c-2.5 1.5-5 .5-7-3z', 'M15 6.5c1.5-1.5 4-1.5 5 .5s0 4-2 4.5', '', ''],
+      seed: ['M8 4c2 2 2 5 0 7c-2-2-2-5 0-7z', 'M16 6c2 2 2 5 0 7c-2-2-2-5 0-7z', 'M11 13c2 2 2 5 0 7c-2-2-2-5 0-7z', ''],
+      cube: ['M12 3l8 4.5v9L12 21l-8-4.5v-9z', 'M4 7.5l8 4.5l8-4.5', 'M12 12v9', ''],
+      fruit: ['M12 7c-4-2-8 1-7 6c1 5 4 8 7 7c3 1 6-2 7-7c1-5-3-8-7-6z', 'M12 7c0-2 1-4 3-4', '', ''],
+      veg: ['M15 5c3 1 5 4 3 8c-2 4-6 7-9 7c-3 0-4-3-2-6c2-3 3-5 4-7c1-2 2-2.5 4-2z', 'M15 5c0-1.5 1-2.5 2.5-3', '', ''],
+      drop: ['M12 3c3 4 5 7 5 10a5 5 0 0 1-10 0c0-3 2-6 5-10z', '', '', '']
+    };
+    var T = {
+      A: { label: 'FDA-authorized claim', bg: '#A9D8C8' },
+      B: { label: 'Strong research', bg: '#E9B53F' },
+      C: { label: 'Early research', bg: '#FFFFFF' }
+    };
+    var mk = function (o, ico) { var p = I[ico]; return Object.assign({ d1: p[0], d2: p[1], d3: p[2], d4: p[3] }, o); };
+    var slots = [
+      { k: 'oats',
+        main: mk({ name: 'Oats and barley', tier: 'A', nutrient: 'Soluble fiber (beta-glucan)', how: 'Beta-glucan turns into a thick gel in your gut. It traps bile acids, which your body makes from cholesterol, and carries them out. To make more, your liver pulls LDL cholesterol from your blood.', src: 'FDA authorized health claim, 21 CFR 101.81' }, 'grain'),
+        alt: mk({ name: 'Apples, pears and citrus', tier: 'A', nutrient: 'Soluble fiber (pectin)', how: 'Pectin, the fiber that makes jam set, forms the same kind of gel in your gut and traps bile acids the way oats do. Eat the peel where you can.', src: 'FDA authorized health claim, 21 CFR 101.77' }, 'fruit') },
+      { k: 'beans',
+        main: mk({ name: 'Beans and lentils', tier: 'A', nutrient: 'Soluble fiber + plant protein', how: 'Their fiber traps bile acids like oats do. And when beans stand in for some of the meat in a dish, it has less saturated fat, the fat most tied to higher LDL.', src: 'FDA authorized health claim, 21 CFR 101.77; Dietary Guidelines for Americans' }, 'bean'),
+        alt: mk({ name: 'Okra and eggplant', tier: 'B', nutrient: 'Gel-forming (viscous) fiber', how: 'Okra and eggplant bring sticky, gel-forming fiber in a vegetable. They were part of the Portfolio diet trials that lowered LDL alongside other foods.', src: 'Portfolio diet trials, Chiavaroli et al., 2018' }, 'veg') },
+      { k: 'seeds',
+        main: mk({ name: 'Pumpkin and sunflower seeds', tier: 'C', nutrient: 'Unsaturated fats + plant sterols', how: 'Their fats are mostly unsaturated, which helps when they replace butter or fatty meat. They carry small amounts of plant sterols, which compete with cholesterol for absorption. The research on seeds themselves is still limited.', src: 'Small clinical trials; Portfolio diet framework, Chiavaroli et al., 2018' }, 'seed'),
+        alt: mk({ name: 'Olive oil and avocado', tier: 'B', nutrient: 'Unsaturated fats', how: 'Cooking with olive oil instead of butter, and adding avocado, swaps saturated fat for unsaturated fat. That swap is one of the best-studied ways to keep LDL in a healthy range.', src: 'FDA qualified health claim for oleic acid oils (2018); Dietary Guidelines for Americans' }, 'drop') },
+      { k: 'tofu',
+        main: mk({ name: 'Tofu and edamame', tier: 'B', nutrient: 'Plant protein', how: 'The biggest win is what tofu replaces: meat and cheese with more saturated fat. Studies of soy protein itself show a small, direct effect on LDL too.', src: 'Blanco Mejia et al., 2019 (meta-analysis of 46 trials)' }, 'cube'),
+        alt: mk({ name: 'Whole grains like farro and brown rice', tier: 'A', nutrient: 'Fiber', how: 'Swapping refined grains for whole grains adds fiber to the same dinners you already make, from grain bowls to stir-fries.', src: 'FDA authorized health claim, 21 CFR 101.77' }, 'grain') }
+    ];
+    var foods = slots.map(function (sl) {
+      var isAlt = !!st.swapped[sl.k];
+      var f = isAlt ? sl.alt : sl.main;
+      var other = isAlt ? sl.main : sl.alt;
+      var open = st.open === sl.k;
+      return Object.assign({}, f, {
+        tierLabel: T[f.tier].label, tierBg: T[f.tier].bg,
+        open: open, rot: open ? 180 : 0,
+        toggle: function () { self.setState({ open: open ? null : sl.k, toast: '' }); },
+        swapLabel: isAlt ? 'Switch back to ' + other.name.toLowerCase() : 'Not a fan? Try ' + other.name.toLowerCase(),
+        swap: function () {
+          var n = Object.assign({}, st.swapped); n[sl.k] = !isAlt;
+          self.setState({ swapped: n, toast: 'Done. Your dinners will use ' + other.name.toLowerCase() + ' instead.' });
+        }
+      });
+    });
+    return {
+      foods: foods,
+      countWord: 'four',
+      toastOn: !!st.toast,
+      toast: st.toast
+    };
+  }
+}
+</script>
+</body>
+</html>

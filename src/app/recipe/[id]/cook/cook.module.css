@@ -1,0 +1,9 @@
+.screen { flex: 1; min-height: 100dvh; padding: 0 24px 32px; display: flex; flex-direction: column; gap: 18px; }
+.top { height: 56px; display: flex; align-items: center; justify-content: space-between; }
+.progress { height: 10px; border-radius: 5px; border: var(--stroke-ink) solid var(--navy); background: var(--white); overflow: hidden; }
+.progress div { height: 100%; background: var(--mustard); }
+.count { font: 900 20px/1.2 var(--font-display); }
+.step { font-size: 26px; line-height: 1.4; font-weight: 500; }
+.hl { font-weight: 700; background: var(--parchment); border-radius: 4px; padding: 0 4px; }
+.nav { display: flex; gap: 10px; }
+.grow { flex: 1; width: auto; }

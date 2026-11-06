@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>5 · Mark what's always in your kitchen</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700;9..144,900&amp;family=Yellowtail&amp;family=DM+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#1E2B45}a:hover{color:#000000}
+button,input{font-family:inherit}
+.btn:hover{color:#FFFFFF}
+:focus-visible{outline:3px solid #1E2B45;outline-offset:2px}
+.btn{display:flex;align-items:center;justify-content:center;min-height:56px;padding:0 24px;border-radius:14px;border:2px solid #1E2B45;background:#C8242B;color:#FFFFFF;font-weight:700;font-size:17px;text-decoration:none;box-shadow:4px 4px 0 #1E2B45;box-sizing:border-box}
+.back{width:44px;height:44px;border-radius:22px;display:flex;align-items:center;justify-content:center;color:#1E2B45}
+.bar{flex:1;height:6px;border-radius:3px;background:#1E2B45}
+.off{opacity:0.2}
+.chip{display:inline-flex;align-items:center;gap:6px;height:44px;padding:0 16px;border-radius:999px;border:2px solid #1E2B45;background:#FFFFFF;color:#1E2B45;font-weight:500;font-size:15px;cursor:pointer;box-sizing:border-box}
+.on{background:#1E2B45;color:#FBF1DC;font-weight:700}
+.add{height:52px;padding:0 18px;border-radius:999px;border:2px solid #1E2B45;background:#1E2B45;color:#FBF1DC;font-weight:700;font-size:15px;cursor:pointer}
+</style>
+</helmet>
+<div style="width: 390px; height: 900px; box-sizing: border-box; background: #FBF1DC; font-family: 'DM Sans', sans-serif; color: #1E2B45; padding: 12px 24px 40px; display: flex; flex-direction: column; gap: 18px">
+<div style="display: flex; align-items: center; gap: 12px">
+<a href="V2-4B-Household.dc.html" class="back" aria-label="Back"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"></path></svg></a>
+<div style="flex: 1; display: flex; gap: 6px"><span class="bar"></span><span class="bar"></span><span class="bar"></span><span class="bar"></span><span class="bar"></span><span class="bar off"></span></div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 8px">
+<h1 style="margin: 0; font-family: 'Fraunces', Georgia, serif; font-weight: 900; font-size: 40px; line-height: 1; letter-spacing: -0.5px">What's always in your kitchen?</h1>
+<p style="margin: 0; font-size: 16px; line-height: 1.45">Untick anything you don't keep. We'll leave the rest off your list.</p>
+</div>
+<div role="group" aria-label="Pantry staples" style="display: flex; flex-wrap: wrap; gap: 8px">
+<sc-for list="{{items}}" as="c" hint-placeholder-count="12">
+<sc-if value="{{c.on}}" hint-placeholder-val="{{ true }}"><button type="button" class="chip on" aria-pressed="true" onClick="{{c.toggle}}"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"></path></svg>{{c.label}}</button></sc-if>
+<sc-if value="{{c.notOn}}" hint-placeholder-val="{{ false }}"><button type="button" class="chip" aria-pressed="false" onClick="{{c.toggle}}">{{c.label}}</button></sc-if>
+</sc-for>
+</div>
+<div style="display: flex; flex-direction: column; gap: 8px">
+<label for="addstaple" style="font-size: 15px; font-weight: 700">Something else you always have?</label>
+<div style="display: flex; gap: 8px">
+<input id="addstaple" type="text" placeholder="e.g. tahini, frozen peas" value="{{draft}}" onChange="{{onDraft}}" style="flex: 1; min-width: 0; height: 52px; padding: 0 16px; border-radius: 14px; border: 2px solid #1E2B45; background: #FFFFFF; font-size: 16px; color: #1E2B45; box-sizing: border-box">
+<button type="button" class="add" onClick="{{addItem}}">Add</button>
+</div>
+</div>
+<p style="margin: 0; font-size: 15px; font-weight: 700">{{count}} staples in your kitchen</p>
+<div style="flex: 1"></div>
+<a href="V2-6-Remind.dc.html" class="btn">Next</a>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":900}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { off: { 'Soy sauce': true, 'Canned tomatoes': true }, extra: [], draft: '' };
+  }
+  renderVals() {
+    var self = this;
+    var off = this.state.off;
+    var labels = ['Olive oil', 'Salt', 'Black pepper', 'Garlic', 'Onions', 'Rice', 'Oats', 'Pasta', 'Canned tomatoes', 'Vinegar', 'Red pepper flakes', 'Soy sauce'].concat(this.state.extra);
+    var items = labels.map(function (l) {
+      var on = !off[l];
+      return { label: l, on: on, notOn: !on, toggle: function () { var n = Object.assign({}, self.state.off); n[l] = !n[l]; self.setState({ off: n }); } };
+    });
+    return {
+      items: items,
+      count: items.filter(function (i) { return i.on; }).length,
+      draft: this.state.draft,
+      onDraft: function (e) { self.setState({ draft: e.target.value }); },
+      addItem: function () {
+        var v = (self.state.draft || '').trim();
+        if (!v) return;
+        var v2 = v.charAt(0).toUpperCase() + v.slice(1);
+        if (self.state.extra.indexOf(v2) === -1) self.setState({ extra: self.state.extra.concat([v2]), draft: '' });
+        else self.setState({ draft: '' });
+      }
+    };
+  }
+}
+</script>
+</body>
+</html>

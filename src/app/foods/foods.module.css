@@ -1,0 +1,57 @@
+.screen { flex: 1; padding: 28px 24px 40px; display: flex; flex-direction: column; gap: 16px; }
+.screenAll { flex: 1; padding: 0 24px 40px; display: flex; flex-direction: column; gap: 18px; }
+.headerBar { height: 56px; margin-left: -16px; display: flex; align-items: center; }
+.h1 { font: 900 38px/1.02 var(--font-display); letter-spacing: -0.5px; }
+.head { display: flex; flex-direction: column; gap: 8px; }
+.legend { display: flex; flex-direction: column; gap: 6px; padding: 12px 14px; border-radius: var(--radius-md); background: var(--parchment); }
+.legendRows { display: flex; flex-direction: column; gap: 4px; font-size: 13px; line-height: 1.35; }
+.lab { font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; }
+.list { display: flex; flex-direction: column; gap: 10px; }
+.food { border-radius: var(--radius-md); border: var(--stroke-ink) solid var(--navy); background: var(--white); overflow: hidden; }
+.headBtn {
+  display: flex; align-items: center; gap: 12px; width: 100%; min-height: 72px; padding: 10px 12px;
+  border: 0; background: transparent; text-align: left; color: var(--navy);
+}
+.ico {
+  width: 46px; height: 46px; border-radius: 23px; background: var(--parchment); border: var(--stroke-ink) solid var(--navy);
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+}
+.fn { font: 900 18px/1.1 var(--font-display); }
+.col { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 5px; align-items: flex-start; }
+.chev { flex-shrink: 0; transition: transform 150ms ease; display: inline-flex; }
+.open { transform: rotate(180deg); }
+.body { display: flex; flex-direction: column; gap: 10px; padding: 0 14px 14px; }
+.how { display: flex; flex-direction: column; gap: 4px; padding: 12px 14px; border-radius: 10px; background: var(--paper); }
+.how p, .bodyAll p { font-size: 14px; line-height: 1.55; }
+.src { font-size: 12px; line-height: 1.45; color: var(--navy-muted); }
+.fine { font-size: 12px; line-height: 1.45; color: var(--navy-muted); }
+.spacer { flex: 1; }
+.toast { position: sticky; bottom: 16px; z-index: 5; }
+
+/* All foods */
+.grade { display: flex; flex-direction: column; gap: 8px; padding: 14px 16px; border-radius: var(--radius-md); border: var(--stroke-ink) solid var(--navy); background: var(--white); }
+.grade p { font-size: 14px; line-height: 1.5; }
+.grp { display: flex; flex-direction: column; gap: 8px; }
+.gh { display: flex; align-items: center; gap: 10px; }
+.tl {
+  width: 28px; height: 28px; border-radius: 14px; background: var(--navy); color: var(--on-navy);
+  font-size: 15px; font-weight: 700; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0;
+}
+.gTitle { font: 900 20px/1.1 var(--font-display); }
+.box { border-radius: var(--radius-md); border: var(--stroke-ink) solid var(--navy); background: var(--white); overflow: hidden; }
+.headAll {
+  display: flex; align-items: center; gap: 12px; width: 100%; min-height: 64px; padding: 8px 12px;
+  border: 0; border-bottom: 1px solid var(--parchment); background: transparent; text-align: left; color: var(--navy);
+}
+.icoSm { width: 40px; height: 40px; border-radius: 20px; background: var(--parchment); border: var(--stroke-ink) solid var(--navy); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.fnAll { font-weight: 700; font-size: 16px; line-height: 1.2; }
+.nut { font-size: 13px; color: var(--navy-muted); }
+.note {
+  display: inline-flex; align-items: center; height: 22px; padding: 0 8px; border-radius: var(--radius-pill);
+  font-size: 11px; font-weight: 700; border: var(--stroke-ink) solid var(--navy); align-self: flex-start;
+}
+.noteWeek { background: var(--mint); }
+.noteAvoid { background: var(--white); border-style: dashed; }
+.noteNot { background: var(--white); }
+.bodyAll { display: flex; flex-direction: column; gap: 8px; padding: 10px 14px 14px; border-bottom: 1px solid var(--parchment); background: var(--paper); }
+.dinnersLink { align-self: flex-start; font-size: 14px; font-weight: 700; min-height: 44px; display: inline-flex; align-items: center; gap: 4px; }

@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>6 · Pick cooking nights, reminders and email (or opt out)</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700;9..144,900&amp;family=Yellowtail&amp;family=DM+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#1E2B45}a:hover{color:#000000}
+button,input,select{font-family:inherit}
+.btn:hover{color:#FFFFFF}
+:focus-visible{outline:3px solid #1E2B45;outline-offset:2px}
+.btn{display:flex;align-items:center;justify-content:center;min-height:56px;padding:0 24px;border-radius:14px;border:2px solid #1E2B45;background:#C8242B;color:#FFFFFF;font-weight:700;font-size:17px;text-decoration:none;box-shadow:4px 4px 0 #1E2B45;box-sizing:border-box}
+.back{width:44px;height:44px;border-radius:22px;display:flex;align-items:center;justify-content:center;color:#1E2B45}
+.bar{flex:1;height:6px;border-radius:3px;background:#1E2B45}
+.day{width:44px;height:44px;border-radius:22px;border:2px solid #1E2B45;background:#FFFFFF;color:#1E2B45;font-weight:700;font-size:14px;cursor:pointer;padding:0}
+.chip{display:inline-flex;align-items:center;height:44px;padding:0 16px;border-radius:999px;border:2px solid #1E2B45;background:#FFFFFF;color:#1E2B45;font-weight:500;font-size:15px;cursor:pointer;box-sizing:border-box}
+.on{background:#1E2B45;color:#FBF1DC;font-weight:700}
+.lab{font-size:15px;font-weight:700}
+.time{height:44px;padding:0 12px;border-radius:999px;border:2px solid #1E2B45;background:#FFFFFF;color:#1E2B45;font-size:15px;font-weight:700;box-sizing:border-box}
+.nightrow{display:flex;align-items:center;justify-content:space-between;gap:12px;height:56px;padding:0 6px 0 16px;border-radius:14px;border:2px solid #1E2B45;background:#FFFFFF}
+</style>
+</helmet>
+<div style="width: 390px; height: 1000px; box-sizing: border-box; background: #FBF1DC; font-family: 'DM Sans', sans-serif; color: #1E2B45; padding: 12px 24px 28px; display: flex; flex-direction: column; gap: 18px">
+<div style="display: flex; align-items: center; gap: 12px">
+<a href="V2-5-Pantry.dc.html" class="back" aria-label="Back"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"></path></svg></a>
+<div style="flex: 1; display: flex; gap: 6px"><span class="bar"></span><span class="bar"></span><span class="bar"></span><span class="bar"></span><span class="bar"></span><span class="bar"></span></div>
+</div>
+<h1 style="margin: 0; font-family: 'Fraunces', Georgia, serif; font-weight: 900; font-size: 40px; line-height: 1; letter-spacing: -0.5px">Which nights do you cook?</h1>
+<div role="group" aria-label="Cooking nights" style="display: flex; justify-content: space-between">
+<sc-for list="{{days}}" as="d" hint-placeholder-count="7">
+<sc-if value="{{d.on}}" hint-placeholder-val="{{ false }}"><button type="button" class="day on" aria-pressed="true" aria-label="{{d.name}}" onClick="{{d.toggle}}">{{d.short}}</button></sc-if>
+<sc-if value="{{d.notOn}}" hint-placeholder-val="{{ true }}"><button type="button" class="day" aria-pressed="false" aria-label="{{d.name}}" onClick="{{d.toggle}}">{{d.short}}</button></sc-if>
+</sc-for>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 10px">
+<span class="lab">Send me</span>
+<div role="radiogroup" aria-label="What to send" style="display: flex; flex-wrap: wrap; gap: 8px">
+<sc-for list="{{sends}}" as="t" hint-placeholder-count="3">
+<sc-if value="{{t.on}}" hint-placeholder-val="{{ false }}"><button type="button" role="radio" aria-checked="true" class="chip on" onClick="{{t.pick}}">{{t.label}}</button></sc-if>
+<sc-if value="{{t.notOn}}" hint-placeholder-val="{{ true }}"><button type="button" role="radio" aria-checked="false" class="chip" onClick="{{t.pick}}">{{t.label}}</button></sc-if>
+</sc-for>
+</div>
+</div>
+
+<sc-if value="{{modeQuick}}" hint-placeholder-val="{{ true }}">
+<div style="display: flex; flex-direction: column; gap: 10px">
+<span class="lab">Remind me at</span>
+<div role="group" aria-label="Reminder time" style="display: flex; flex-wrap: wrap; gap: 8px">
+<sc-for list="{{times}}" as="t" hint-placeholder-count="4">
+<sc-if value="{{t.on}}" hint-placeholder-val="{{ false }}"><button type="button" class="chip on" aria-pressed="true" onClick="{{t.pick}}">12 pm</button></sc-if>
+<sc-if value="{{t.notOn}}" hint-placeholder-val="{{ true }}"><button type="button" class="chip" aria-pressed="false" onClick="{{t.pick}}">{{t.label}}</button></sc-if>
+</sc-for>
+</div>
+<sc-if value="{{custom}}" hint-placeholder-val="{{ false }}">
+<label style="display: flex; align-items: center; gap: 10px; font-size: 15px; font-weight: 500">Pick a time <input type="time" class="time" value="17:45" aria-label="Custom reminder time"></label>
+</sc-if>
+</div>
+</sc-if>
+
+<sc-if value="{{modeNight}}" hint-placeholder-val="{{ false }}">
+<div style="display: flex; flex-direction: column; gap: 10px">
+<span class="lab">Remind me on each night at</span>
+<sc-for list="{{nightRows}}" as="n" hint-placeholder-count="3">
+<label class="nightrow"><span style="font-weight: 700; font-size: 16px">{{n.name}}</span><input type="time" class="time" value="{{n.time}}" aria-label="{{n.name}} reminder time"></label>
+</sc-for>
+</div>
+</sc-if>
+
+<sc-if value="{{modeBefore}}" hint-placeholder-val="{{ false }}">
+<div style="display: flex; flex-direction: column; gap: 12px">
+<label style="display: flex; align-items: center; justify-content: space-between; gap: 10px" class="lab">I usually start cooking at <input type="time" class="time" value="18:30" aria-label="Usual cooking start time"></label>
+<span class="lab">Remind me</span>
+<div role="group" aria-label="How long before" style="display: flex; flex-wrap: wrap; gap: 8px">
+<sc-for list="{{befores}}" as="t" hint-placeholder-count="3">
+<sc-if value="{{t.on}}" hint-placeholder-val="{{ false }}"><button type="button" class="chip on" aria-pressed="true" onClick="{{t.pick}}">{{t.label}}</button></sc-if>
+<sc-if value="{{t.notOn}}" hint-placeholder-val="{{ true }}"><button type="button" class="chip" aria-pressed="false" onClick="{{t.pick}}">{{t.label}}</button></sc-if>
+</sc-for>
+</div>
+<span style="font-size: 13px">Enough time to grab what's missing on the way home.</span>
+</div>
+</sc-if>
+
+<div style="display: flex; flex-direction: column; gap: 8px">
+<label for="email" class="lab">{{emailLabel}} <sc-if value="{{optOut}}" hint-placeholder-val="{{ false }}"><span style="font-weight: 500; color: #5A6378">(optional)</span></sc-if></label>
+<input id="email" type="email" placeholder="you@email.com" autocomplete="email" style="height: 52px; padding: 0 16px; border-radius: 14px; border: 2px solid #1E2B45; background: #FFFFFF; font-size: 16px; color: #1E2B45; box-sizing: border-box">
+<span style="font-size: 13px; line-height: 1.45">{{emailNote}}</span>
+</div>
+<div style="flex: 1"></div>
+<a href="V2-7-Foods.dc.html" class="btn">Show my dinners</a>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"timePicker":{"editor":"enum","options":["Quick picks + custom","Different time each night","Before I start cooking"],"default":"Quick picks + custom"},"$preview":{"width":390,"height":1000}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { days: { Mon: true, Tue: true, Thu: true }, time: '4:30 pm', before: '1 hour', send: 'Menu + nightly reminders' };
+  }
+  renderVals() {
+    var self = this;
+    var st = this.state;
+    var mode = this.props.timePicker ?? 'Quick picks + custom';
+    var names = { Mon: 'Monday', Tue: 'Tuesday', Wed: 'Wednesday', Thu: 'Thursday', Fri: 'Friday', Sat: 'Saturday', Sun: 'Sunday' };
+    var keys = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+    var days = keys.map(function (k) {
+      var on = !!st.days[k];
+      return { short: k.charAt(0), name: names[k], on: on, notOn: !on, toggle: function () { var n = Object.assign({}, self.state.days); n[k] = !n[k]; self.setState({ days: n }); } };
+    });
+    var pick = function (labels, key) {
+      return labels.map(function (l) {
+        var on = st[key] === l;
+        return { label: l, on: on, notOn: !on, pick: function () { var n = {}; n[key] = l; self.setState(n); } };
+      });
+    };
+    var nightRows = keys.filter(function (k) { return st.days[k]; }).map(function (k, i) {
+      return { name: names[k], time: i === 1 ? '17:30' : '16:30' };
+    });
+    var rem = st.send === 'Menu + nightly reminders';
+    var weekly = st.send === 'Weekly menu only';
+    var signIn = " We'll also email a one-tap sign-in link, so you can open your plan on any device.";
+    return {
+      days: days,
+      modeQuick: rem && mode === 'Quick picks + custom',
+      modeNight: rem && mode === 'Different time each night',
+      modeBefore: rem && mode === 'Before I start cooking',
+      optOut: !rem && !weekly,
+      emailLabel: rem ? 'Email for your menu and reminders' : weekly ? 'Email for your weekly menu' : 'Email to save your plan',
+      emailNote: rem ? 'One weekly email with a printable menu and shopping list, plus a short reminder on each cooking night. Pause anytime.' + signIn : weekly ? 'One weekly email with a printable menu and shopping list. Pause anytime.' + signIn : "We won't send menus or reminders. Your plan is saved on this device. Add an email if you want to open it on another device; we'll only use it to send you a sign-in link.",
+      times: pick(['9 am', '4:30 pm', '5 pm', 'Custom'], 'time'),
+      custom: st.time === 'Custom',
+      nightRows: nightRows,
+      befores: pick(['30 min', '1 hour', '2 hours'], 'before'),
+      sends: pick(['Menu + nightly reminders', 'Weekly menu only', 'Nothing for now'], 'send')
+    };
+  }
+}
+</script>
+</body>
+</html>

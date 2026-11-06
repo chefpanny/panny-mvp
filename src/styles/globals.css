@@ -1,0 +1,34 @@
+@import './tokens.css';
+
+*, *::before, *::after { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  background: var(--paper);
+  color: var(--navy);
+  font-family: var(--font-sans);
+  font-size: var(--body-size);
+  line-height: var(--body-line);
+  -webkit-font-smoothing: antialiased;
+}
+button, input, textarea, select { font-family: inherit; color: inherit; }
+button { cursor: pointer; }
+a { color: var(--navy); }
+a:hover { color: var(--navy); text-decoration-thickness: 2px; }
+:focus-visible { outline: 3px solid var(--navy); outline-offset: 2px; }
+h1, h2, h3, p { margin: 0; }
+
+/* Single centered phone column. 390 design width, max 480. */
+.app {
+  position: relative;
+  max-width: 480px;
+  min-height: 100dvh;
+  margin: 0 auto;
+  background: var(--paper);
+  display: flex;
+  flex-direction: column;
+}
+
+.visually-hidden {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}

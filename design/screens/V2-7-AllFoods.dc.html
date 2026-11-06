@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>7 · Browse all LDL foods by evidence grade</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700;9..144,900&amp;family=Yellowtail&amp;family=DM+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#1E2B45}a:hover{color:#000000}
+button{font-family:inherit}
+:focus-visible{outline:3px solid #1E2B45;outline-offset:2px}
+.icon{width:44px;height:44px;border-radius:22px;display:flex;align-items:center;justify-content:center;color:#1E2B45}
+.grp{display:flex;flex-direction:column;gap:8px}
+.gh{display:flex;align-items:center;gap:10px}
+.tl{width:28px;height:28px;border-radius:14px;background:#1E2B45;color:#FBF1DC;font-size:15px;font-weight:700;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0}
+.box{border-radius:12px;border:2px solid #1E2B45;background:#FFFFFF;overflow:hidden}
+.head{display:flex;align-items:center;gap:12px;width:100%;min-height:64px;padding:8px 12px;border:0;border-bottom:1px solid #F2E2BD;background:transparent;text-align:left;color:#1E2B45;cursor:pointer;box-sizing:border-box}
+.ico{width:40px;height:40px;border-radius:20px;background:#F2E2BD;border:2px solid #1E2B45;display:flex;align-items:center;justify-content:center;flex-shrink:0;box-sizing:border-box}
+.fn{font-weight:700;font-size:16px;line-height:1.2}
+.note{display:inline-flex;align-items:center;height:22px;padding:0 8px;border-radius:999px;font-size:11px;font-weight:700;border:2px solid #1E2B45;box-sizing:border-box;align-self:flex-start}
+.body{display:flex;flex-direction:column;gap:8px;padding:10px 14px 14px;border-bottom:1px solid #F2E2BD;background:#FBF1DC}
+.lab{font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase}
+</style>
+</helmet>
+<div style="width: 390px; min-height: 1700px; box-sizing: border-box; background: #FBF1DC; font-family: 'DM Sans', sans-serif; color: #1E2B45; padding: 0 24px 40px; display: flex; flex-direction: column; gap: 18px">
+<header style="height: 56px; margin-left: -16px; display: flex; align-items: center">
+<a href="V2-7-Foods.dc.html" class="icon" aria-label="Back"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"></path></svg></a>
+</header>
+<div style="display: flex; flex-direction: column; gap: 8px">
+<h1 style="margin: 0; font-family: 'Fraunces', Georgia, serif; font-weight: 900; font-size: 38px; line-height: 1.02; letter-spacing: -0.5px">All LDL foods</h1>
+<p style="margin: 0; font-size: 16px; line-height: 1.5">Every food we build LDL dinners around, grouped by how strong the evidence is.</p>
+</div>
+<section aria-label="How we grade evidence" style="display: flex; flex-direction: column; gap: 8px; padding: 14px 16px; border-radius: 12px; border: 2px solid #1E2B45; background: #FFFFFF">
+<span class="lab">How we grade evidence</span>
+<p style="margin: 0; font-size: 14px; line-height: 1.5">Each grade is for a food's role in healthy LDL, set with our dietitian advisor from published research. A grade isn't a ranking of what to eat: the benefit comes from the overall pattern, more fiber and less saturated fat, across your week.</p>
+<a href="#method" style="font-size: 13px; font-weight: 700; min-height: 36px; display: inline-flex; align-items: center">Read our full method</a>
+</section>
+
+<sc-for list="{{groups}}" as="g" hint-placeholder-count="3">
+<section class="grp" aria-label="Tier {{g.tier}}">
+<div class="gh"><span class="tl" style="box-shadow: 0 0 0 3px {{g.bg}}">{{g.tier}}</span><span style="display: flex; flex-direction: column"><span style="font-family: 'Fraunces', Georgia, serif; font-weight: 900; font-size: 20px; line-height: 1.1">{{g.label}}</span><span style="font-size: 13px; color: #5A6378">{{g.desc}}</span></span></div>
+<div class="box">
+<sc-for list="{{g.foods}}" as="f" hint-placeholder-count="4">
+<button type="button" class="head" aria-expanded="{{f.open}}" onClick="{{f.toggle}}">
+<span class="ico" style="opacity: {{f.op}}"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1E2B45" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="{{f.d1}}"></path><path d="{{f.d2}}"></path><path d="{{f.d3}}"></path></svg></span>
+<span style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 4px">
+<span class="fn">{{f.name}}</span>
+<span style="font-size: 13px; color: #5A6378">{{f.nutrient}}</span>
+<sc-if value="{{f.inWeek}}" hint-placeholder-val="{{ false }}"><span class="note" style="background: #A9D8C8">In your week</span></sc-if>
+<sc-if value="{{f.avoid}}" hint-placeholder-val="{{ false }}"><span class="note" style="background: #FFFFFF; border-style: dashed">You avoid tree nuts</span></sc-if>
+<sc-if value="{{f.notDinner}}" hint-placeholder-val="{{ false }}"><span class="note" style="background: #FFFFFF">Not in our dinners</span></sc-if>
+</span>
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink: 0; transform: rotate({{f.rot}}deg)"><path d="M6 9l6 6 6-6"></path></svg>
+</button>
+<sc-if value="{{f.open}}" hint-placeholder-val="{{ false }}">
+<div class="body">
+<span class="lab">How it works</span>
+<p style="margin: 0; font-size: 14px; line-height: 1.55">{{f.how}}</p>
+<span style="font-size: 12px; line-height: 1.45; color: #5A6378">Source: {{f.src}}</span>
+<sc-if value="{{f.canCook}}" hint-placeholder-val="{{ true }}"><a href="V2-7-Week.dc.html" style="align-self: flex-start; font-size: 14px; font-weight: 700; min-height: 44px; display: inline-flex; align-items: center; gap: 4px">{{f.dinners}}<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"></path></svg></a></sc-if>
+</div>
+</sc-if>
+</sc-for>
+</div>
+</section>
+</sc-for>
+
+<p style="margin: 0; font-size: 12px; line-height: 1.45; color: #5A6378">Education, not medical advice. If you take cholesterol medication or manage a medical condition, check with your clinician or pharmacist before changing your diet. Grades are provisional until our evidence rubric is final.</p>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":1700}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { open: 'sterols' };
+  }
+  renderVals() {
+    var self = this;
+    var I = {
+      grain: ['M12 22V8', 'M12 8c0-2.5 1.5-4.5 3.5-5c0 2.5-1.5 4.5-3.5 5z', 'M12 8c0-2.5-1.5-4.5-3.5-5c0 2.5 1.5 4.5 3.5 5z'],
+      bean: ['M6 15c-2-2-2-6 1-7.5c2.5-1.2 4 .5 4 2.5c0 1.5 1.5 2 2.5 2.5c2 1 2 4-.5 5.5c-2.5 1.5-5 .5-7-3z', 'M15 6.5c1.5-1.5 4-1.5 5 .5s0 4-2 4.5', ''],
+      seed: ['M8 4c2 2 2 5 0 7c-2-2-2-5 0-7z', 'M16 6c2 2 2 5 0 7c-2-2-2-5 0-7z', 'M11 13c2 2 2 5 0 7c-2-2-2-5 0-7z'],
+      cube: ['M12 3l8 4.5v9L12 21l-8-4.5v-9z', 'M4 7.5l8 4.5l8-4.5', 'M12 12v9'],
+      fruit: ['M12 7c-4-2-8 1-7 6c1 5 4 8 7 7c3 1 6-2 7-7c1-5-3-8-7-6z', 'M12 7c0-2 1-4 3-4', ''],
+      veg: ['M15 5c3 1 5 4 3 8c-2 4-6 7-9 7c-3 0-4-3-2-6c2-3 3-5 4-7c1-2 2-2.5 4-2z', 'M15 5c0-1.5 1-2.5 2.5-3', ''],
+      drop: ['M12 3c3 4 5 7 5 10a5 5 0 0 1-10 0c0-3 2-6 5-10z', '', ''],
+      nut: ['M12 4c4 0 7 3 7 8s-3 8-7 8s-7-3-7-8s3-8 7-8z', 'M12 4v16', ''],
+      bottle: ['M9 3h6', 'M10 3v4l-3 4v9h10v-9l-3-4V3', ''],
+      clove: ['M12 3c-4 3-6 7-6 11a6 6 0 0 0 12 0c0-4-2-8-6-11z', 'M12 3v17', '']
+    };
+    var F = [
+      { k: 'oats', tier: 'A', name: 'Oats and barley', ico: 'grain', nutrient: 'Soluble fiber (beta-glucan)', inWeek: true, dinners: 'Dinners with oats and barley (8)', how: 'Beta-glucan turns into a thick gel in your gut. It traps bile acids, which your body makes from cholesterol, and carries them out. To make more, your liver pulls LDL cholesterol from your blood.', src: 'FDA authorized health claim, 21 CFR 101.81' },
+      { k: 'beans', tier: 'A', name: 'Beans and lentils', ico: 'bean', nutrient: 'Soluble fiber + plant protein', inWeek: true, dinners: 'Dinners with beans and lentils (24)', how: 'Their fiber traps bile acids like oats do. When beans stand in for some of the meat in a dish, it also has less saturated fat.', src: 'FDA authorized health claim, 21 CFR 101.77' },
+      { k: 'fruit', tier: 'A', name: 'Apples, pears and citrus', ico: 'fruit', nutrient: 'Soluble fiber (pectin)', dinners: 'Dinners with apples, pears or citrus (6)', how: 'Pectin forms a gel in your gut and traps bile acids the way oats do.', src: 'FDA authorized health claim, 21 CFR 101.77' },
+      { k: 'grains', tier: 'A', name: 'Whole grains', ico: 'grain', nutrient: 'Fiber', inWeek: true, dinners: 'Dinners with whole grains (19)', how: 'Swapping refined grains for whole grains adds fiber to dinners you already make.', src: 'FDA authorized health claim, 21 CFR 101.77' },
+      { k: 'sterols', tier: 'A', name: 'Plant sterol-fortified foods', ico: 'bottle', nutrient: 'Plant sterols and stanols', notDinner: true, how: "Sterols look like cholesterol and block some of it from being absorbed. The benefit depends on a daily amount from fortified spreads or drinks, so we don't build dinners around them. Ask your clinician whether they fit your plan.", src: 'FDA authorized health claim, 21 CFR 101.83' },
+      { k: 'soy', tier: 'B', name: 'Tofu, edamame and tempeh', ico: 'cube', nutrient: 'Plant protein', dinners: 'Dinners with soy (9)', how: 'The biggest win is what soy replaces: meat and cheese with more saturated fat. Soy protein itself shows a small, direct effect on LDL.', src: 'Blanco Mejia et al., 2019 (meta-analysis of 46 trials)' },
+      { k: 'oil', tier: 'B', name: 'Olive oil and avocado', ico: 'drop', nutrient: 'Unsaturated fats', inWeek: true, dinners: 'Dinners with olive oil or avocado (31)', how: 'Using them instead of butter swaps saturated fat for unsaturated fat, one of the best-studied ways to keep LDL in a healthy range.', src: 'FDA qualified health claim for oleic acid oils (2018)' },
+      { k: 'nuts', tier: 'B', name: 'Walnuts and almonds', ico: 'nut', nutrient: 'Unsaturated fats + fiber', avoid: true, how: 'Nuts are part of the Portfolio diet and carry an FDA qualified health claim. You avoid tree nuts, so your dinners use other fats instead.', src: 'FDA qualified health claim for nuts (2003); Portfolio diet trials' },
+      { k: 'okra', tier: 'B', name: 'Okra and eggplant', ico: 'veg', nutrient: 'Gel-forming (viscous) fiber', dinners: 'Dinners with okra or eggplant (5)', how: 'Sticky, gel-forming fiber in a vegetable, part of the Portfolio diet trials.', src: 'Portfolio diet trials, Chiavaroli et al., 2018' },
+      { k: 'seeds', tier: 'C', name: 'Pumpkin and sunflower seeds', ico: 'seed', nutrient: 'Unsaturated fats + plant sterols', inWeek: true, dinners: 'Dinners with seeds (11)', how: 'Mostly unsaturated fats and small amounts of plant sterols. Research on seeds themselves is still limited.', src: 'Small clinical trials' },
+      { k: 'garlic', tier: 'C', name: 'Garlic', ico: 'clove', nutrient: 'Allium compounds', dinners: 'Dinners with garlic (40+)', how: 'Some studies show a small effect on cholesterol; others show none. We use it for flavor, not as an LDL food.', src: 'Mixed results across meta-analyses' }
+    ];
+    var G = [
+      { tier: 'A', label: 'A · FDA-authorized claim', desc: 'The strongest evidence: an FDA-approved health claim', bg: '#A9D8C8' },
+      { tier: 'B', label: 'B · Strong research', desc: 'Consistent trials, or an FDA qualified claim', bg: '#E9B53F' },
+      { tier: 'C', label: 'C · Early research', desc: 'Promising but limited or mixed', bg: '#FFFFFF' }
+    ];
+    var openK = this.state.open;
+    var groups = G.map(function (g) {
+      return Object.assign({}, g, { foods: F.filter(function (f) { return f.tier === g.tier; }).map(function (f) {
+        var p = I[f.ico]; var open = openK === f.k;
+        return Object.assign({ inWeek: false, avoid: false, notDinner: false, dinners: '' }, f, {
+          d1: p[0], d2: p[1], d3: p[2], open: open, rot: open ? 180 : 0, op: f.avoid ? 0.5 : 1,
+          canCook: !f.avoid && !f.notDinner,
+          toggle: function () { self.setState({ open: open ? null : f.k }); }
+        });
+      }) });
+    });
+    return { groups: groups };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>7 · Send your usual dinner to be made LDL-friendly (handled by hand in the pilot)</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700;9..144,900&amp;family=Yellowtail&amp;family=DM+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#1E2B45}a:hover{color:#000000}
+button,input,textarea{font-family:inherit}
+.btn:hover{color:#FFFFFF}
+:focus-visible{outline:3px solid #1E2B45;outline-offset:2px}
+.btn{display:flex;align-items:center;justify-content:center;width:100%;min-height:56px;padding:0 24px;border-radius:14px;border:2px solid #1E2B45;background:#C8242B;color:#FFFFFF;font-weight:700;font-size:17px;text-decoration:none;box-shadow:4px 4px 0 #1E2B45;box-sizing:border-box;cursor:pointer}
+.icon{width:44px;height:44px;border-radius:22px;display:flex;align-items:center;justify-content:center;color:#1E2B45}
+.lab{font-size:15px;font-weight:700}
+.field{padding:0 16px;border-radius:14px;border:2px solid #1E2B45;background:#FFFFFF;font-size:16px;color:#1E2B45;box-sizing:border-box}
+.chip{display:inline-flex;align-items:center;height:44px;padding:0 14px;border-radius:999px;border:2px solid #1E2B45;background:#FFFFFF;color:#1E2B45;font-weight:500;font-size:14px;cursor:pointer;box-sizing:border-box}
+.on{background:#1E2B45;color:#FBF1DC;font-weight:700}
+</style>
+</helmet>
+<div style="width: 390px; min-height: 1150px; box-sizing: border-box; background: #FBF1DC; font-family: 'DM Sans', sans-serif; color: #1E2B45; padding: 0 24px 32px; display: flex; flex-direction: column; gap: 18px">
+<header style="height: 56px; margin-left: -16px; display: flex; align-items: center">
+<a href="V2-7-Week.dc.html" class="icon" aria-label="Back to your week"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"></path></svg></a>
+</header>
+
+<sc-if value="{{form}}" hint-placeholder-val="{{ true }}">
+<div style="display: flex; flex-direction: column; gap: 18px">
+<div style="display: flex; flex-direction: column; gap: 8px">
+<h1 style="margin: 0; font-family: 'Fraunces', Georgia, serif; font-weight: 900; font-size: 38px; line-height: 1.02; letter-spacing: -0.5px">Make my usual dinner work</h1>
+<p style="margin: 0; font-size: 16px; line-height: 1.5">Tell us a dinner your household already loves. Our test kitchen will send back an LDL-friendly version that still tastes like yours.</p>
+</div>
+<div style="display: flex; flex-direction: column; gap: 8px">
+<label for="dish" class="lab">What's the dinner?</label>
+<input id="dish" type="text" class="field" style="height: 52px" value="Pasta bake" placeholder="e.g. my mom's pasta bake">
+</div>
+<div style="display: flex; flex-direction: column; gap: 8px">
+<label for="whatsin" class="lab">What goes in it?</label>
+<textarea id="whatsin" class="field" rows="3" style="padding: 12px 16px; line-height: 1.45; resize: none" placeholder="List what you usually use">Ground beef, ziti, jarred marinara, ricotta, lots of mozzarella</textarea>
+</div>
+<div style="display: flex; flex-direction: column; gap: 8px">
+<label for="link" class="lab">Got a link or a photo? <span style="font-weight: 500; color: #5A6378">(optional)</span></label>
+<div style="display: flex; gap: 8px">
+<input id="link" type="url" class="field" style="flex: 1; min-width: 0; height: 52px" placeholder="Paste a recipe link">
+<button type="button" class="chip" style="height: 52px; border-radius: 14px" aria-label="Add a photo"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h3l2-3h6l2 3h3v11H4z"></path><circle cx="12" cy="13" r="3.5"></circle></svg></button>
+</div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 8px">
+<span class="lab">What has to stay?</span>
+<div role="group" aria-label="What has to stay" style="display: flex; flex-wrap: wrap; gap: 8px">
+<sc-for list="{{keeps}}" as="c" hint-placeholder-count="4">
+<sc-if value="{{c.on}}" hint-placeholder-val="{{ false }}"><button type="button" class="chip on" aria-pressed="true" onClick="{{c.toggle}}">{{c.label}}</button></sc-if>
+<sc-if value="{{c.notOn}}" hint-placeholder-val="{{ true }}"><button type="button" class="chip" aria-pressed="false" onClick="{{c.toggle}}">{{c.label}}</button></sc-if>
+</sc-for>
+</div>
+</div>
+<div style="padding: 12px 14px; border-radius: 12px; background: #F2E2BD; font-size: 14px; line-height: 1.5"><strong>What usually changes:</strong> leaner meat or half meat, half lentils; part-skim cheese, used where you taste it; whole-grain pasta; more vegetables in the sauce.</div>
+<button type="button" class="btn" onClick="{{send}}">Send to the test kitchen</button>
+<span style="font-size: 13px; line-height: 1.45; color: #5A6378; text-align: center">We'll reply within 2 days. Your adapted dinner joins next week's plan.</span>
+</div>
+</sc-if>
+
+<sc-if value="{{sent}}" hint-placeholder-val="{{ false }}">
+<div style="display: flex; flex-direction: column; gap: 18px">
+<span style="font-family: 'Yellowtail', cursive; font-size: 30px; line-height: 1; color: #C8242B">Got it!</span>
+<h1 style="margin: 0; font-family: 'Fraunces', Georgia, serif; font-weight: 900; font-size: 38px; line-height: 1.02; letter-spacing: -0.5px">Your pasta bake is in the test kitchen</h1>
+<p style="margin: 0; font-size: 16px; line-height: 1.5">We'll send your LDL-friendly version by Saturday, in time for next week's plan.</p>
+<div style="display: flex; flex-direction: column; gap: 12px; padding: 16px 18px; border-radius: 12px; border: 2px solid #1E2B45; background: #FFFFFF">
+<span style="font-size: 12px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase">What to expect</span>
+<div style="display: flex; gap: 10px"><span style="font-weight: 700">1</span><span style="font-size: 14px; line-height: 1.5">Same dish, same cheesy top. We change how it's made, not what it is.</span></div>
+<div style="display: flex; gap: 10px"><span style="font-weight: 700">2</span><span style="font-size: 14px; line-height: 1.5">A short note on each change and why it helps your LDL.</span></div>
+<div style="display: flex; gap: 10px"><span style="font-weight: 700">3</span><span style="font-size: 14px; line-height: 1.5">It shows up in your week as a Family favorite, with its ingredients on your list.</span></div>
+</div>
+<a href="V2-7-Week.dc.html" class="btn">Back to my week</a>
+<button type="button" onClick="{{again}}" style="align-self: center; min-height: 44px; border: 0; background: transparent; color: #1E2B45; font-weight: 700; font-size: 15px; text-decoration: underline; cursor: pointer">Send another dinner</button>
+</div>
+</sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"startState":{"editor":"enum","options":["Form","Sent"],"default":"Form"},"$preview":{"width":390,"height":1150}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { sent: null, keeps: { 'The cheese': true } };
+  }
+  renderVals() {
+    var self = this;
+    var sent = this.state.sent === null ? (this.props.startState ?? 'Form') === 'Sent' : this.state.sent;
+    return {
+      form: !sent,
+      sent: sent,
+      keeps: ['The cheese', 'The meat', 'The pasta shape', 'Surprise me'].map(function (l) {
+        var on = !!self.state.keeps[l];
+        return { label: l, on: on, notOn: !on, toggle: function () { var n = Object.assign({}, self.state.keeps); n[l] = !n[l]; self.setState({ keeps: n }); } };
+      }),
+      send: function () { self.setState({ sent: true }); },
+      again: function () { self.setState({ sent: false }); }
+    };
+  }
+}
+</script>
+</body>
+</html>

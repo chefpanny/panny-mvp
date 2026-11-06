@@ -1,0 +1,17 @@
+.screen { flex: 1; padding: 0 24px 32px; display: flex; flex-direction: column; gap: 18px; }
+.header { height: 56px; margin-left: -16px; display: flex; align-items: center; }
+.stack { display: flex; flex-direction: column; gap: 18px; }
+.head { display: flex; flex-direction: column; gap: 8px; }
+.h1 { font: 900 38px/1.02 var(--font-display); letter-spacing: -0.5px; }
+.lead { font-size: 16px; line-height: 1.5; }
+.lab { font-size: 15px; font-weight: 700; }
+.photo {
+  height: 52px; padding: 0 14px; border-radius: var(--radius-lg); border: var(--stroke-ink) solid var(--navy);
+  background: var(--white); color: var(--navy); display: inline-flex; align-items: center;
+}
+.changes { padding: 12px 14px; border-radius: var(--radius-md); background: var(--parchment); font-size: 14px; line-height: 1.5; }
+.fine { font-size: 13px; line-height: 1.45; color: var(--navy-muted); text-align: center; }
+.script { font: 400 30px/1 var(--font-script); color: var(--cherry); }
+.expect { display: flex; flex-direction: column; gap: 12px; padding: 16px 18px; border-radius: var(--radius-md); border: var(--stroke-ink) solid var(--navy); background: var(--white); }
+.step { display: flex; gap: 10px; font-size: 14px; line-height: 1.5; }
+.step span:first-child { font-weight: 700; }

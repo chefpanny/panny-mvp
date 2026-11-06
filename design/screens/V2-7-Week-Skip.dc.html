@@ -1,0 +1,296 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>7 · Skip a night: drop its ingredients or save it for next week</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700;9..144,900&amp;family=Yellowtail&amp;family=DM+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#1E2B45}a:hover{color:#000000}
+button{font-family:inherit}
+.btn:hover{color:#FFFFFF}
+:focus-visible{outline:3px solid #1E2B45;outline-offset:2px}
+.btn{display:flex;align-items:center;justify-content:center;width:100%;min-height:56px;padding:0 24px;border-radius:14px;border:2px solid #1E2B45;background:#C8242B;color:#FFFFFF;font-weight:700;font-size:17px;text-decoration:none;box-shadow:4px 4px 0 #1E2B45;box-sizing:border-box;cursor:pointer}
+.btn2{display:flex;align-items:center;justify-content:center;width:100%;min-height:52px;padding:0 20px;border-radius:14px;border:2px solid #1E2B45;background:#FFFFFF;color:#1E2B45;font-weight:700;font-size:16px;text-decoration:none;box-shadow:4px 4px 0 #1E2B45;box-sizing:border-box;cursor:pointer}
+.card{position:relative;border-radius:12px;border:2px solid #1E2B45;background:#FFFFFF;box-shadow:5px 5px 0 #1E2B45;overflow:hidden}
+.media{position:relative;display:block;height:176px;background:#F2E2BD;border-bottom:2px solid #1E2B45;text-decoration:none;color:#5A6378;font-size:13px}
+.ph{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding-bottom:30px}
+.scrim{position:absolute;left:0;right:0;bottom:0;height:70px;background:linear-gradient(rgba(30,43,69,0),rgba(30,43,69,0.45))}
+.night{position:absolute;top:12px;left:12px;height:30px;padding:0 11px;display:inline-flex;align-items:center;border-radius:999px;background:#1E2B45;color:#FBF1DC;font-weight:700;font-size:13px}
+.tags{position:absolute;left:12px;right:12px;bottom:12px;display:flex;flex-wrap:wrap;gap:6px}
+.goal{display:inline-flex;align-items:center;gap:5px;height:30px;padding:0 11px;border-radius:999px;border:2px solid #1E2B45;background:#1E2B45;font-weight:700;font-size:13px;color:#FBF1DC;box-sizing:border-box}
+.ftag{display:inline-flex;align-items:center;height:30px;padding:0 10px;border-radius:999px;border:2px solid #1E2B45;font-weight:500;font-size:13px;color:#1E2B45;box-sizing:border-box}
+.body{display:flex;flex-direction:column;gap:6px;padding:14px 16px 4px;text-decoration:none;color:#1E2B45}
+.nuts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;padding:10px 16px 12px}
+.stat{display:flex;flex-direction:column;gap:1px;padding:8px 10px;border-radius:8px;background:#FBF1DC}
+.sv{font-family:'Fraunces',Georgia,serif;font-weight:900;font-size:19px;line-height:1}
+.sl{font-size:12px;font-weight:500}
+.foot{display:flex;gap:8px;padding:10px 12px 12px;border-top:2px solid #F2E2BD}
+.act{flex:1;display:inline-flex;align-items:center;justify-content:center;gap:6px;height:44px;border-radius:999px;border:2px solid #1E2B45;background:#FFFFFF;color:#1E2B45;font-weight:700;font-size:14px;cursor:pointer;box-sizing:border-box;padding:0}
+.food{flex-shrink:0;display:flex;align-items:center;gap:10px;height:56px;padding:0 14px 0 6px;border-radius:999px;border:2px solid #1E2B45;background:#FFFFFF;color:#1E2B45;box-sizing:border-box}
+.fimg{width:40px;height:40px;border-radius:20px;border:2px solid #1E2B45;background:#A9D8C8;display:flex;align-items:center;justify-content:center;flex-shrink:0;box-sizing:border-box}
+.chip{display:inline-flex;align-items:center;height:44px;padding:0 14px;border-radius:999px;border:2px solid #1E2B45;background:#FFFFFF;color:#1E2B45;font-weight:500;font-size:14px;cursor:pointer;box-sizing:border-box}
+.on{background:#1E2B45;color:#FBF1DC;font-weight:700}
+.row{display:flex;align-items:center;gap:12px;width:100%;min-height:56px;padding:8px 14px;border-radius:12px;border:2px solid #1E2B45;background:#FFFFFF;text-align:left;color:#1E2B45;cursor:pointer;box-sizing:border-box}
+.athumb{width:56px;height:56px;border-radius:8px;background:#F2E2BD;border:2px solid #1E2B45;flex-shrink:0;box-sizing:border-box;display:flex;align-items:center;justify-content:center;font-size:10px;color:#5A6378}
+.lab{font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase}
+.link{border:0;background:transparent;padding:0;min-height:44px;color:#1E2B45;font-weight:700;font-size:15px;text-decoration:underline;cursor:pointer}
+.sheet{position:absolute;left:0;right:0;bottom:0;padding:14px 24px 30px;border-radius:24px 24px 0 0;border-top:2px solid #1E2B45;background:#FBF1DC;display:flex;flex-direction:column;gap:14px}
+</style>
+</helmet>
+<div style="position: relative; width: 390px; min-height: 2100px; box-sizing: border-box; background: #FBF1DC; font-family: 'DM Sans', sans-serif; color: #1E2B45; display: flex; flex-direction: column; overflow: hidden">
+<header style="height: 56px; padding: 0 16px 0 24px; display: flex; align-items: center; justify-content: space-between">
+<span style="font-family: 'Fraunces', Georgia, serif; font-weight: 700; font-size: 22px">panny</span>
+<a href="V2-6-Remind.dc.html" aria-label="Settings" style="width: 44px; height: 44px; display: flex; align-items: center; justify-content: center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"></circle><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"></path></svg></a>
+</header>
+<div style="padding: 8px 24px 14px; display: flex; flex-direction: column; gap: 6px">
+<h1 style="margin: 0; font-family: 'Fraunces', Georgia, serif; font-weight: 900; font-size: 40px; line-height: 1; letter-spacing: -0.5px">Your week</h1>
+<p style="margin: 0; font-size: 16px">{{countLine}} · for 4</p>
+<p style="margin: 0; font-size: 14px; line-height: 1.45">Every dinner here is LDL-friendly: low in saturated fat, with real fiber. <a href="V2-8B-Why.dc.html" style="font-weight: 700">What that means</a></p>
+</div>
+<section aria-label="LDL foods this week" style="padding: 0 0 20px 24px; display: flex; flex-direction: column; gap: 8px">
+<div style="display: flex; align-items: center; justify-content: space-between; padding-right: 24px">
+<span style="font-size: 15px; font-weight: 700">LDL foods this week</span>
+<a href="V2-7-Foods.dc.html" style="font-size: 14px; font-weight: 700; min-height: 44px; display: inline-flex; align-items: center">How they work</a>
+</div>
+<div style="display: flex; gap: 8px; overflow-x: auto; padding: 0 24px 6px 0">
+<sc-for list="{{foods}}" as="f" hint-placeholder-count="4">
+<span class="food"><span class="fimg"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1E2B45" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="{{f.d1}}"></path><path d="{{f.d2}}"></path><path d="{{f.d3}}"></path></svg></span><span style="display: flex; flex-direction: column; gap: 2px"><span style="font-weight: 700; font-size: 14px">{{f.name}}</span><span style="font-size: 12px">Evidence {{f.tier}}</span></span></span>
+</sc-for>
+</div>
+</section>
+
+<div style="padding: 0 24px; display: flex; flex-direction: column; gap: 24px">
+<sc-for list="{{meals}}" as="m" hint-placeholder-count="3">
+<sc-if value="{{m.isSkipped}}" hint-placeholder-val="{{ false }}">
+<div style="display: flex; flex-direction: column; gap: 8px; padding: 14px 16px; border-radius: 12px; border: 2px dashed #1E2B45">
+<span style="font-family: 'Fraunces', Georgia, serif; font-weight: 900; font-size: 19px">{{m.night}} · Skipped</span>
+<span style="font-size: 14px; line-height: 1.45">{{m.skipNote}}</span>
+<div style="display: flex; gap: 16px"><button type="button" class="link" onClick="{{m.unskip}}">Undo</button><button type="button" class="link" onClick="{{m.openSwap}}">Add a dinner</button></div>
+</div>
+</sc-if>
+<sc-if value="{{m.notSkipped}}" hint-placeholder-val="{{ true }}">
+<article class="card" aria-label="{{m.night}}: {{m.title}}">
+<a href="V2-8-Recipe.dc.html" class="media" aria-label="Open {{m.title}}">
+<span class="ph">[Dish photo: {{m.title}}]</span>
+<span class="scrim" aria-hidden="true"></span>
+<span class="night">{{m.night}}</span>
+<span class="tags">
+<span class="goal"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"></path></svg>LDL-friendly</span>
+<sc-if value="{{m.familiar}}" hint-placeholder-val="{{ false }}"><span class="ftag" style="background: #FFFFFF; font-weight: 700">Family favorite</span></sc-if>
+<sc-for list="{{m.tags}}" as="t" hint-placeholder-count="0"><span class="ftag" style="background: #A9D8C8">{{t}}</span></sc-for>
+</span>
+</a>
+<a href="V2-8-Recipe.dc.html" class="body">
+<span style="font-size: 13px; color: #5A6378; font-weight: 500">By {{m.by}}</span>
+<span style="font-family: 'Fraunces', Georgia, serif; font-weight: 900; font-size: 22px; line-height: 1.12">{{m.title}}</span>
+<span style="font-size: 14px; font-weight: 500">{{m.min}} min · You have {{m.have}} of {{m.total}}</span>
+<sc-if value="{{m.familiar}}" hint-placeholder-val="{{ false }}"><span style="margin-top: 4px; padding: 8px 10px; border-radius: 8px; background: #A9D8C8; font-size: 13px; line-height: 1.4"><strong>Made LDL-friendly:</strong> {{m.adapt}}</span></sc-if>
+</a>
+<div class="nuts" aria-label="Per serving">
+<span class="stat"><span class="sv">{{m.fiber}} g</span><span class="sl">fiber</span></span>
+<span class="stat"><span class="sv">{{m.protein}} g</span><span class="sl">protein</span></span>
+<span class="stat"><span class="sv">{{m.sat}} g</span><span class="sl">sat fat</span></span>
+</div>
+<div class="foot">
+<button type="button" class="act" onClick="{{m.openSwap}}" aria-label="Swap {{m.night}}'s dinner"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9h13l-3-3"></path><path d="M20 15H7l3 3"></path></svg>Swap</button>
+<button type="button" class="act" onClick="{{m.openMove}}" aria-label="Move {{m.night}}'s dinner"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="5" width="16" height="15" rx="2"></rect><path d="M4 10h16"></path><path d="M9 3v4"></path><path d="M15 3v4"></path></svg>Move</button>
+<button type="button" class="act" onClick="{{m.openSkip}}" aria-label="Skip {{m.night}}"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 5l14 14"></path><circle cx="12" cy="12" r="9"></circle></svg>Skip</button>
+</div>
+</article>
+</sc-if>
+</sc-for>
+
+<a href="V2-7-Usual.dc.html" style="display: flex; flex-direction: column; gap: 8px; padding: 16px 18px; border-radius: 12px; border: 2px solid #1E2B45; background: #A9D8C8; box-shadow: 5px 5px 0 #1E2B45; text-decoration: none">
+<span style="font-family: 'Fraunces', Georgia, serif; font-weight: 900; font-size: 20px; line-height: 1.15">Have a dinner your family already loves?</span>
+<span style="font-size: 14px; line-height: 1.45">Tell us your usual. Our test kitchen will make an LDL-friendly version that still tastes like home.</span>
+<span style="display: inline-flex; align-items: center; gap: 4px; font-weight: 700; font-size: 15px; text-decoration: underline">Make my usual dinner work<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"></path></svg></span>
+</a>
+<span style="font-size: 12px; color: #5A6378; line-height: 1.45">Per serving, calculated from each recipe's amounts with USDA data. Sample values in this mock.</span>
+</div>
+<div style="flex: 1; min-height: 28px"></div>
+<sc-if value="{{toastOn}}" hint-placeholder-val="{{ false }}">
+<div role="status" style="position: sticky; bottom: 104px; margin: 0 24px 12px; display: flex; align-items: center; justify-content: space-between; gap: 10px; min-height: 48px; padding: 0 8px 0 16px; border-radius: 12px; background: #1E2B45; color: #FBF1DC; font-size: 14px">
+<span>{{toast}}</span>
+<button type="button" onClick="{{undo}}" style="min-height: 44px; padding: 0 8px; border: 0; background: transparent; color: #E9B53F; font-weight: 700; font-size: 14px; cursor: pointer">Undo</button>
+</div>
+</sc-if>
+<div style="position: sticky; bottom: 0; padding: 14px 24px 28px; background: #FBF1DC; border-top: 2px solid #1E2B45">
+<a href="V2-9-List.dc.html" class="btn">See this week's list</a>
+</div>
+
+<sc-if value="{{anySheet}}" hint-placeholder-val="{{ false }}"><div style="position: absolute; inset: 0; background: rgba(30, 43, 69, 0.45)"></div></sc-if>
+
+<sc-if value="{{swapOpen}}" hint-placeholder-val="{{ false }}">
+<section role="dialog" aria-label="Swap {{tNight}}'s dinner" class="sheet">
+<span aria-hidden="true" style="align-self: center; width: 44px; height: 5px; border-radius: 3px; background: #1E2B45; opacity: 0.3"></span>
+<div style="display: flex; flex-direction: column; gap: 4px"><h2 style="margin: 0; font-family: 'Fraunces', Georgia, serif; font-weight: 900; font-size: 26px; line-height: 1.05">Swap {{tNight}}'s dinner</h2><span style="font-size: 14px">Replacing {{tTitle}}</span></div>
+<div style="display: flex; flex-direction: column; gap: 8px">
+<span class="lab">What's not working? (optional)</span>
+<div role="radiogroup" aria-label="Reason" style="display: flex; flex-wrap: wrap; gap: 8px">
+<sc-for list="{{reasons}}" as="r" hint-placeholder-count="4">
+<sc-if value="{{r.on}}" hint-placeholder-val="{{ false }}"><button type="button" role="radio" aria-checked="true" class="chip on" onClick="{{r.pick}}">{{r.label}}</button></sc-if>
+<sc-if value="{{r.notOn}}" hint-placeholder-val="{{ true }}"><button type="button" role="radio" aria-checked="false" class="chip" onClick="{{r.pick}}">{{r.label}}</button></sc-if>
+</sc-for>
+</div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 8px">
+<span class="lab">{{altHeading}}</span>
+<sc-for list="{{alts}}" as="a" hint-placeholder-count="3">
+<button type="button" class="row" onClick="{{a.pick}}" aria-label="Swap in {{a.title}}">
+<span class="athumb">[Photo]</span>
+<span style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 3px"><span style="font-family: 'Fraunces', Georgia, serif; font-weight: 900; font-size: 16px; line-height: 1.15">{{a.title}}</span><span style="font-size: 13px">{{a.min}} min · {{a.fiber}} g fiber · {{a.protein}} g protein</span><span style="font-size: 12px; font-weight: 700">{{a.tagLine}}</span></span>
+</button>
+</sc-for>
+</div>
+<span style="font-size: 13px">This week's list updates automatically.</span>
+<button type="button" class="link" style="align-self: center" onClick="{{closeSheet}}">Keep {{tNight}}'s dinner</button>
+</section>
+</sc-if>
+
+<sc-if value="{{moveOpen}}" hint-placeholder-val="{{ false }}">
+<section role="dialog" aria-label="Move {{tNight}}'s dinner" class="sheet">
+<span aria-hidden="true" style="align-self: center; width: 44px; height: 5px; border-radius: 3px; background: #1E2B45; opacity: 0.3"></span>
+<div style="display: flex; flex-direction: column; gap: 4px"><h2 style="margin: 0; font-family: 'Fraunces', Georgia, serif; font-weight: 900; font-size: 26px; line-height: 1.05">Move {{tTitle}}</h2><span style="font-size: 14px">Now on {{tNight}}. Pick a new night.</span></div>
+<div style="display: flex; flex-direction: column; gap: 8px">
+<sc-for list="{{nights}}" as="n" hint-placeholder-count="6">
+<button type="button" class="row" onClick="{{n.pick}}">
+<span style="width: 92px; font-weight: 700; font-size: 16px">{{n.name}}</span>
+<span style="flex: 1; font-size: 13px; color: #5A6378">{{n.note}}</span>
+</button>
+</sc-for>
+</div>
+<span style="font-size: 13px; line-height: 1.45">Your list stays the same. If fresh ingredients won't keep that long, we'll tell you.</span>
+<button type="button" class="link" style="align-self: center" onClick="{{closeSheet}}">Keep it on {{tNight}}</button>
+</section>
+</sc-if>
+
+<sc-if value="{{skipOpen}}" hint-placeholder-val="{{ false }}">
+<section role="dialog" aria-label="Skip {{tNight}}" class="sheet">
+<span aria-hidden="true" style="align-self: center; width: 44px; height: 5px; border-radius: 3px; background: #1E2B45; opacity: 0.3"></span>
+<div style="display: flex; flex-direction: column; gap: 4px"><h2 style="margin: 0; font-family: 'Fraunces', Georgia, serif; font-weight: 900; font-size: 26px; line-height: 1.05">Skip {{tNight}}?</h2><span style="font-size: 14px">No dinner from us that night. It happens.</span></div>
+<div role="radiogroup" aria-label="What to do with this dinner" style="display: flex; flex-direction: column; gap: 8px">
+<sc-for list="{{skipOpts}}" as="o" hint-placeholder-count="2">
+<button type="button" role="radio" aria-checked="{{o.on}}" class="row" onClick="{{o.pick}}">
+<span style="width: 22px; height: 22px; border-radius: 11px; border: 2px solid #1E2B45; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; box-sizing: border-box"><sc-if value="{{o.on}}" hint-placeholder-val="{{ false }}"><span style="width: 10px; height: 10px; border-radius: 5px; background: #1E2B45"></span></sc-if></span>
+<span style="display: flex; flex-direction: column; gap: 2px"><span style="font-weight: 700; font-size: 15px">{{o.label}}</span><span style="font-size: 13px; color: #5A6378">{{o.note}}</span></span>
+</button>
+</sc-for>
+</div>
+<button type="button" class="btn" onClick="{{confirmSkip}}">Skip {{tNight}}</button>
+<button type="button" class="link" style="align-self: center" onClick="{{closeSheet}}">Never mind</button>
+</section>
+</sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"startState":{"editor":"enum","options":["Feed","Swap sheet open","Move sheet open","Skip sheet open"],"default":"Skip sheet open"},"$preview":{"width":390,"height":2100}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { mode: null, target: null, reason: null, skipKeep: false, nights: null, skipped: {}, swapped: {}, toast: '', prev: null };
+  }
+  renderVals() {
+    var self = this;
+    var st = this.state;
+    var start = this.props.startState ?? 'Skip sheet open';
+    var startMode = start === 'Swap sheet open' ? 'swap' : start === 'Move sheet open' ? 'move' : start === 'Skip sheet open' ? 'skip' : 'feed';
+    var mode = st.mode || startMode;
+    var target = st.target !== null ? st.target : (startMode === 'swap' ? 0 : 2);
+    var DAYS = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+    var nightsOf = st.nights || { 0: 'Monday', 1: 'Tuesday', 2: 'Thursday' };
+    var base = [
+      { by: '@creatorhandle', title: 'Lemony White Bean & Kale Skillet', min: 25, have: 6, total: 10, fiber: 12, protein: 16, sat: 3, familiar: false, adapt: '', tags: [], items: 5 },
+      { by: '@creatortwo', title: 'Turkey & Lentil Bolognese', min: 30, have: 5, total: 9, fiber: 13, protein: 32, sat: 3, familiar: true, adapt: 'half lean turkey, half lentils, whole-wheat spaghetti, Parmesan on the side.', tags: ['Kid-friendly'], items: 6 },
+      { by: '@creatorthree', title: 'Black Bean & Sweet Potato Tacos', min: 25, have: 7, total: 11, fiber: 14, protein: 15, sat: 2, familiar: false, adapt: '', tags: [], items: 5 }
+    ];
+    var alts = [
+      { by: '@sheetpancreator', title: 'Sheet-Pan Chicken Fajitas & Black Beans', min: 25, have: 6, total: 10, fiber: 11, protein: 34, sat: 2, familiar: true, adapt: 'skinless chicken breast, black beans in the mix, olive oil, no sour cream.', tags: [], items: 6 },
+      { by: '@soupcreator', title: 'Smoky Black Bean Soup', min: 20, have: 7, total: 9, fiber: 15, protein: 14, sat: 1, familiar: false, adapt: '', tags: [], items: 4 },
+      { by: '@saladcreator', title: 'Salmon & Farro Bowls', min: 30, have: 5, total: 9, fiber: 9, protein: 30, sat: 2, familiar: false, adapt: '', tags: [], items: 6 }
+    ];
+    var snap = function () { return { nights: Object.assign({}, nightsOf), skipped: Object.assign({}, st.skipped), swapped: Object.assign({}, st.swapped) }; };
+    var meals = base.map(function (b, i) {
+      var m = st.swapped[i] !== undefined ? alts[st.swapped[i]] : b;
+      var night = nightsOf[i];
+      var skipped = !!st.skipped[i];
+      return Object.assign({}, m, {
+        idx: i, night: night, order: DAYS.indexOf(night),
+        isSkipped: skipped, notSkipped: !skipped,
+        skipNote: st.skipped[i] === 'keep' ? 'Saved for next week. Its ingredients stay on your list.' : m.items + " items came off this week's list.",
+        openSwap: function () { self.setState({ mode: 'swap', target: i, reason: null }); },
+        openMove: function () { self.setState({ mode: 'move', target: i }); },
+        openSkip: function () { self.setState({ mode: 'skip', target: i, skipKeep: false }); },
+        unskip: function () { var n = Object.assign({}, st.skipped); delete n[i]; self.setState({ mode: 'feed', skipped: n, toast: '' }); }
+      });
+    }).sort(function (a, b) { return a.order - b.order; });
+    var t = meals.filter(function (m) { return m.idx === target; })[0] || meals[0];
+    var occupied = {};
+    meals.forEach(function (m) { occupied[m.night] = m; });
+    var reasonList = ['Not feeling it', 'Too long tonight', "Someone won't eat it", 'Had it recently'];
+    var altList = alts.map(function (a, k) {
+      return Object.assign({}, a, { tagLine: a.familiar ? 'LDL-friendly · Family favorite' : 'LDL-friendly', pick: function () {
+        var n = Object.assign({}, st.swapped); n[t.idx] = k;
+        var sk = Object.assign({}, st.skipped); delete sk[t.idx];
+        self.setState({ mode: 'feed', swapped: n, skipped: sk, prev: snap(), toast: t.night + "'s dinner swapped. Your list is updated." });
+      } });
+    });
+    var altHeading = 'Try one of these';
+    if (st.reason === 'Too long tonight') { altList = altList.slice().sort(function (a, b) { return a.min - b.min; }); altHeading = 'Fastest first'; }
+    var lastFamiliar = t.familiar && meals.filter(function (m) { return m.familiar && !m.isSkipped && m.idx !== t.idx; }).length === 0;
+    if (lastFamiliar) { altList = altList.slice().sort(function (a, b) { return (b.familiar ? 1 : 0) - (a.familiar ? 1 : 0); }); altHeading = st.reason === 'Too long tonight' ? 'Family favorites first, then fastest' : 'Keep a family favorite this week'; }
+    var nightRows = DAYS.filter(function (d) { return d !== t.night; }).map(function (d) {
+      var o = occupied[d];
+      return { name: d, note: o ? (o.isSkipped ? 'Skipped night' : 'Trade nights with ' + o.title) : 'Free night', pick: function () {
+        var n = Object.assign({}, nightsOf);
+        if (o) { n[o.idx] = t.night; }
+        n[t.idx] = d;
+        self.setState({ mode: 'feed', nights: n, prev: snap(), toast: t.title + ' moved to ' + d + '.' });
+      } };
+    });
+    var skipOpts = [
+      { label: 'Take its ingredients off my list', note: t.items + " items come off this week's list.", on: !st.skipKeep, pick: function () { self.setState({ mode: 'skip', skipKeep: false }); } },
+      { label: 'Save it for next week', note: 'Keep the ingredients and cook it next week.', on: !!st.skipKeep, pick: function () { self.setState({ mode: 'skip', skipKeep: true }); } }
+    ];
+    var live = meals.filter(function (m) { return !m.isSkipped; }).length;
+    var I = {
+      grain: ['M12 22V8', 'M12 8c0-2.5 1.5-4.5 3.5-5c0 2.5-1.5 4.5-3.5 5z', 'M12 8c0-2.5-1.5-4.5-3.5-5c0 2.5 1.5 4.5 3.5 5z'],
+      bean: ['M6 15c-2-2-2-6 1-7.5c2.5-1.2 4 .5 4 2.5c0 1.5 1.5 2 2.5 2.5c2 1 2 4-.5 5.5c-2.5 1.5-5 .5-7-3z', 'M15 6.5c1.5-1.5 4-1.5 5 .5s0 4-2 4.5', ''],
+      seed: ['M8 4c2 2 2 5 0 7c-2-2-2-5 0-7z', 'M16 6c2 2 2 5 0 7c-2-2-2-5 0-7z', 'M11 13c2 2 2 5 0 7c-2-2-2-5 0-7z'],
+      drop: ['M12 3c3 4 5 7 5 10a5 5 0 0 1-10 0c0-3 2-6 5-10z', '', '']
+    };
+    var foods = [['Beans', 'A', 'bean'], ['Whole grains', 'A', 'grain'], ['Olive oil', 'B', 'drop'], ['Seeds', 'C', 'seed']].map(function (f) { var p = I[f[2]]; return { name: f[0], tier: f[1], d1: p[0], d2: p[1], d3: p[2] }; });
+    return {
+      foods: foods,
+      meals: meals,
+      countLine: live + (live === 1 ? ' dinner' : ' dinners') + ' this week',
+      anySheet: mode !== 'feed',
+      swapOpen: mode === 'swap',
+      moveOpen: mode === 'move',
+      skipOpen: mode === 'skip',
+      tNight: t.night,
+      tTitle: t.title,
+      reasons: reasonList.map(function (l) { var on = st.reason === l; return { label: l, on: on, notOn: !on, pick: function () { self.setState({ mode: 'swap', reason: on ? null : l }); } }; }),
+      alts: altList,
+      altHeading: altHeading,
+      nights: nightRows,
+      skipOpts: skipOpts,
+      confirmSkip: function () {
+        var n = Object.assign({}, st.skipped); n[t.idx] = st.skipKeep ? 'keep' : 'drop';
+        self.setState({ mode: 'feed', skipped: n, prev: snap(), toast: t.night + ' skipped. ' + (st.skipKeep ? 'Saved for next week.' : 'Your list is updated.') });
+      },
+      closeSheet: function () { self.setState({ mode: 'feed' }); },
+      toastOn: !!st.toast && mode === 'feed',
+      toast: st.toast,
+      undo: function () { var p = st.prev || { nights: null, skipped: {}, swapped: {} }; self.setState({ mode: 'feed', nights: p.nights, skipped: p.skipped, swapped: p.swapped, toast: '', prev: null }); }
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,319 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>8 · Cook a recipe: watch the video, set servings, start cooking</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700;9..144,900&amp;family=Yellowtail&amp;family=DM+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#1E2B45}a:hover{color:#000000}
+button,input{font-family:inherit}
+.btn:hover{color:#FFFFFF}
+:focus-visible{outline:3px solid #1E2B45;outline-offset:2px}
+.btn{display:flex;align-items:center;justify-content:center;gap:8px;min-height:56px;padding:0 22px;border-radius:14px;border:2px solid #1E2B45;background:#C8242B;color:#FFFFFF;font-weight:700;font-size:17px;text-decoration:none;box-shadow:4px 4px 0 #1E2B45;box-sizing:border-box;cursor:pointer}
+.btn2{display:flex;align-items:center;justify-content:center;gap:8px;min-height:56px;padding:0 18px;border-radius:14px;border:2px solid #1E2B45;background:#FFFFFF;color:#1E2B45;font-weight:700;font-size:16px;text-decoration:none;box-shadow:4px 4px 0 #1E2B45;box-sizing:border-box;cursor:pointer}
+.icon{width:44px;height:44px;border-radius:22px;display:flex;align-items:center;justify-content:center;color:#1E2B45;background:transparent;border:0;cursor:pointer}
+.tag{display:inline-flex;align-items:center;height:32px;padding:0 12px;border-radius:999px;background:#F2E2BD;font-size:13px;font-weight:500}
+.lab{font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase}
+.seg{height:36px;padding:0 10px;border-radius:999px;border:2px solid #1E2B45;background:#FFFFFF;color:#1E2B45;font-weight:700;font-size:13px;cursor:pointer}
+.segon{background:#1E2B45;color:#FBF1DC}
+.small{display:inline-flex;align-items:center;gap:6px;height:44px;padding:0 14px;border-radius:12px;border:2px solid #1E2B45;background:#FFFFFF;color:#1E2B45;font-weight:700;font-size:14px;cursor:pointer;box-sizing:border-box;box-shadow:3px 3px 0 #1E2B45}
+.stat{display:flex;flex-direction:column;gap:4px;padding:10px 12px;border-radius:10px;background:#FFFFFF;border:2px solid #1E2B45}
+.sv{font-family:'Fraunces',Georgia,serif;font-weight:900;font-size:22px;line-height:1}
+.bar{height:6px;border-radius:3px;background:#F2E2BD;overflow:hidden}
+.fill{height:6px;background:#E9B53F}
+.face{grid-area:1 / 1;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:6px;border:2px solid #1E2B45;background:#FFFFFF;box-shadow:5px 5px 0 #1E2B45;overflow:hidden;display:flex;flex-direction:column}
+.band{height:10px;background:#C8242B;border-bottom:2px solid #1E2B45;flex-shrink:0}
+.row{display:flex;align-items:center;gap:12px;height:56px;padding:0 16px;border-bottom:1px solid #CFE0EE;cursor:pointer;box-sizing:border-box}
+.ruled{padding:0 16px 8px;background-image:repeating-linear-gradient(#FFFFFF 0,#FFFFFF 27px,#CFE0EE 27px,#CFE0EE 28px)}
+.sheet{flex:1;display:flex;flex-direction:column;padding:0 16px;background-image:repeating-linear-gradient(#FFFFFF 0,#FFFFFF 27px,#CFE0EE 27px,#CFE0EE 28px)}
+.num{margin-top:2px;width:24px;height:24px;border-radius:12px;background:#E9B53F;border:2px solid #1E2B45;font-weight:700;font-size:13px;display:flex;align-items:center;justify-content:center;flex-shrink:0;box-sizing:border-box}
+.amt{font-weight:700;background:#F2E2BD;border-radius:4px;padding:0 3px}
+.flip{display:inline-flex;align-items:center;gap:6px;min-height:44px;padding:0;border:0;background:transparent;color:#1E2B45;font-weight:700;font-size:15px;text-decoration:underline;cursor:pointer}
+.ig{border:1px solid #DBDBDB;border-radius:4px;background:#FFFFFF;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;color:#000000;overflow:hidden}
+.igbtn{height:32px;padding:0 14px;border-radius:8px;border:0;background:#0095F6;color:#FFFFFF;font-weight:600;font-size:14px;font-family:inherit}
+</style>
+</helmet>
+<div style="position: relative; width: 390px; min-height: 2150px; box-sizing: border-box; background: #FBF1DC; font-family: 'DM Sans', sans-serif; color: #1E2B45; display: flex; flex-direction: column">
+
+<header style="height: 56px; padding: 0 8px; display: flex; align-items: center; justify-content: space-between">
+<a href="V2-7-Week.dc.html" class="icon" aria-label="Back to this week"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"></path></svg></a>
+<span style="font-family: 'Fraunces', Georgia, serif; font-weight: 700; font-size: 20px">panny</span>
+<button type="button" class="icon" aria-label="Save recipe"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path></svg></button>
+</header>
+
+<div style="display: flex; flex-direction: column; gap: 22px; padding: 4px 16px 0">
+
+<section aria-label="Recipe summary" style="display: flex; flex-direction: column; gap: 12px">
+<h1 style="margin: 0; font-family: 'Fraunces', Georgia, serif; font-weight: 900; font-size: 32px; line-height: 1.04; letter-spacing: -0.3px">Lemony White Bean &amp; Kale Skillet</h1>
+<div style="display: flex; flex-wrap: wrap; gap: 8px"><span class="tag">25 min</span><span class="tag">1 skillet</span><span class="tag">Vegetarian</span><span class="tag">Nut-free</span></div>
+</section>
+
+<button type="button" onClick="{{openVideo}}" aria-label="Play the creator's 58-second video here" style="display: flex; align-items: center; gap: 14px; width: 100%; padding: 10px; border-radius: 12px; border: 2px solid #1E2B45; background: #FFFFFF; text-align: left; color: #1E2B45; cursor: pointer; box-sizing: border-box">
+<span style="position: relative; width: 66px; height: 116px; flex-shrink: 0; border-radius: 8px; border: 2px solid #1E2B45; background: #F2E2BD; box-sizing: border-box">
+<span style="position: absolute; left: 50%; top: 50%; width: 36px; height: 36px; margin: -18px 0 0 -18px; border-radius: 18px; background: #C8242B; border: 2px solid #1E2B45; display: flex; align-items: center; justify-content: center; box-sizing: border-box"><svg width="14" height="14" viewBox="0 0 24 24" fill="#FFFFFF" aria-hidden="true"><path d="M8 5v14l11-7z"></path></svg></span>
+<span style="position: absolute; right: 4px; bottom: 4px; padding: 1px 5px; border-radius: 4px; background: #1E2B45; color: #FBF1DC; font-size: 10px; font-weight: 700">0:58</span>
+</span>
+<span style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 4px">
+<span style="font-family: 'Fraunces', Georgia, serif; font-weight: 900; font-size: 17px">Recipe by [Creator Name]</span>
+<span style="font-size: 13px; color: #5A6378">@creatorhandle</span>
+<span style="font-size: 14px; font-weight: 700">Watch the video here</span>
+</span>
+</button>
+
+<section aria-label="Nutrition per serving" style="display: flex; flex-direction: column; gap: 10px">
+<div style="display: flex; align-items: baseline; justify-content: space-between"><span class="lab">Per serving</span><span style="font-size: 12px; color: #5A6378">% of a day's value</span></div>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px">
+<sc-for list="{{nutrients}}" as="n" hint-placeholder-count="4">
+<div class="stat">
+<div style="display: flex; align-items: baseline; justify-content: space-between; gap: 6px"><span class="sv">{{n.value}}</span><span style="font-size: 12px; font-weight: 700">{{n.dv}}%</span></div>
+<span style="font-size: 13px; font-weight: 500">{{n.label}}</span>
+<div class="bar"><div class="fill" style="width: {{n.dv}}%"></div></div>
+<span style="font-size: 11px; color: #5A6378">{{n.note}}</span>
+</div>
+</sc-for>
+</div>
+<span style="font-size: 11px; line-height: 1.4; color: #5A6378">Calculated from this recipe's amounts with USDA data; Daily Values from FDA. Sample values in this mock.</span>
+</section>
+
+<a href="V2-8B-Why.dc.html" aria-label="Why this dinner is LDL-friendly" style="padding: 16px 18px; border-radius: 12px; border: 2px solid #1E2B45; background: #FFFFFF; box-shadow: 5px 5px 0 #1E2B45; display: flex; flex-direction: column; gap: 10px; text-decoration: none">
+<span style="align-self: flex-start; display: inline-flex; align-items: center; gap: 5px; height: 30px; padding: 0 11px; border-radius: 999px; border: 2px solid #1E2B45; background: #1E2B45; color: #FBF1DC; font-weight: 700; font-size: 13px"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"></path></svg>LDL-friendly</span>
+<span style="font-family: 'Fraunces', Georgia, serif; font-weight: 900; font-size: 19px; line-height: 1.2">White beans bring gel-forming soluble fiber. Olive oil keeps saturated fat low.</span>
+<span style="display: inline-flex; align-items: center; gap: 4px; font-weight: 700; font-size: 15px; text-decoration: underline">How it works<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"></path></svg></span>
+</a>
+
+<section aria-label="Ingredients and steps" style="display: grid; perspective: 1600px">
+<div style="display: grid; transform-style: preserve-3d; transition: transform 0.6s ease; transform: rotateY({{deg}}deg)">
+
+<div class="face" aria-hidden="{{frontHidden}}" style="pointer-events: {{frontPE}}">
+<div class="band"></div>
+<div style="padding: 8px 16px 6px; display: flex; flex-direction: column; gap: 8px; border-bottom: 1px solid #CFE0EE">
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 8px">
+<span class="lab">Recipe for · Monday</span>
+<div role="group" aria-label="Servings" style="display: flex; align-items: center; gap: 4px; height: 40px; padding: 0 2px; border-radius: 999px; border: 2px solid #1E2B45; background: #FFFFFF; box-sizing: border-box">
+<button type="button" onClick="{{dec}}" aria-label="Fewer servings" style="width: 34px; height: 34px; border-radius: 17px; border: 0; background: transparent; font-size: 20px; font-weight: 700; color: #1E2B45; cursor: pointer">–</button>
+<span aria-live="polite" style="min-width: 64px; text-align: center; font-weight: 700; font-size: 14px">Serves {{servings}}</span>
+<button type="button" onClick="{{inc}}" aria-label="More servings" style="width: 34px; height: 34px; border-radius: 17px; border: 0; background: transparent; font-size: 20px; font-weight: 700; color: #1E2B45; cursor: pointer">+</button>
+</div>
+</div>
+<span style="font-family: 'Fraunces', Georgia, serif; font-weight: 900; font-size: 24px">Ingredients</span>
+<span style="font-size: 13px">Tick what you have. We'll take it off this week's list.</span>
+</div>
+<sc-for list="{{items}}" as="item" hint-placeholder-count="10">
+<label for="{{item.id}}" class="row">
+<input type="checkbox" id="{{item.id}}" checked="{{item.have}}" onChange="{{item.toggle}}" style="width: 22px; height: 22px; margin: 0; accent-color: #1E2B45; flex-shrink: 0">
+<span style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 1px">
+<sc-if value="{{item.notHave}}" hint-placeholder-val="{{ true }}"><span style="font-size: 15px; font-weight: 500">{{item.name}}</span></sc-if>
+<sc-if value="{{item.have}}" hint-placeholder-val="{{ false }}"><span style="font-size: 15px; font-weight: 500; color: #5A6378; text-decoration: line-through">{{item.name}}</span></sc-if>
+<span style="font-size: 12px; color: #5A6378">{{item.note}}</span>
+</span>
+<span style="font-size: 14px; font-weight: 700; text-align: right">{{item.amt}}</span>
+</label>
+</sc-for>
+<div style="flex: 1"></div>
+<div style="padding: 10px 16px 12px; display: flex; flex-direction: column; gap: 8px">
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 8px">
+<span style="font-size: 14px; font-weight: 700">{{haveCount}} on hand · {{toBuy}} to buy</span>
+<a href="V2-9-List.dc.html" style="display: inline-flex; align-items: center; gap: 5px; font-size: 14px; font-weight: 700; min-height: 44px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"></path></svg>On this week's list</a>
+</div>
+<button type="button" class="flip" style="align-self: flex-end" onClick="{{flip}}">Flip for the steps<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 0 1 15.5-6.2L21 8"></path><path d="M21 3v5h-5"></path><path d="M21 12a9 9 0 0 1-15.5 6.2L3 16"></path><path d="M3 21v-5h5"></path></svg></button>
+</div>
+</div>
+
+<div class="face" aria-hidden="{{backHidden}}" style="transform: rotateY(180deg); pointer-events: {{backPE}}">
+<div class="band"></div>
+<div class="sheet">
+<div style="display: flex; justify-content: space-between; align-items: center; height: 28px"><span class="lab">Recipe for · Monday</span><span style="font-size: 12px; color: #5A6378">Serves {{servings}}</span></div>
+<div style="height: 28px; font-family: 'Fraunces', Georgia, serif; font-weight: 900; font-size: 22px; line-height: 28px">Steps</div>
+<ol style="margin: 0; padding: 0; list-style: none">
+<sc-for list="{{steps}}" as="st" hint-placeholder-count="4">
+<li style="display: flex; gap: 10px"><span class="num" aria-hidden="true">{{st.n}}</span><p style="margin: 0; font-size: 16px; line-height: 28px"><sc-for list="{{st.parts}}" as="p" hint-placeholder-count="3"><sc-if value="{{p.b}}" hint-placeholder-val="{{ false }}"><span class="amt">{{p.t}}</span></sc-if><sc-if value="{{p.plain}}" hint-placeholder-val="{{ true }}"><span>{{p.t}}</span></sc-if></sc-for></p></li>
+</sc-for>
+</ol>
+<div style="flex: 1; min-height: 28px"></div>
+<div style="height: 56px; margin: 0 -16px; padding: 0 16px; display: flex; justify-content: space-between; align-items: center; background: #FFFFFF">
+<button type="button" class="flip" onClick="{{flip}}"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 0 1 15.5-6.2L21 8"></path><path d="M21 3v5h-5"></path><path d="M21 12a9 9 0 0 1-15.5 6.2L3 16"></path><path d="M3 21v-5h5"></path></svg>Back to ingredients</button>
+<a href="V2-10-Checkin.dc.html" style="font-size: 14px; font-weight: 700; min-height: 44px; display: inline-flex; align-items: center">Made it?</a>
+</div>
+</div>
+</div>
+
+</div>
+</section>
+
+<section aria-label="Recipe credit" style="padding: 14px 16px; border-radius: 12px; background: #F2E2BD; display: flex; flex-direction: column; gap: 6px">
+<p style="margin: 0; font-size: 13px; line-height: 1.5">Video by [Creator Name] through Instagram's embed. Ingredients and steps written by Panny from the public post and cooked in the Panny test kitchen.</p>
+<div style="display: flex; gap: 16px; flex-wrap: wrap">
+<a href="https://www.instagram.com/" aria-label="Original post on Instagram (leaves Panny)" style="font-size: 13px; font-weight: 700; min-height: 44px; display: inline-flex; align-items: center; gap: 5px">Original post on Instagram<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6"></path><path d="M20 4l-9 9"></path><path d="M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"></path></svg></a>
+<a href="#claim" style="font-size: 13px; font-weight: 700; min-height: 44px; display: inline-flex; align-items: center">Is this yours? Claim it</a>
+<a href="#report" style="font-size: 13px; font-weight: 500; min-height: 44px; display: inline-flex; align-items: center">Report a problem</a>
+</div>
+</section>
+
+</div>
+
+<div style="flex: 1; min-height: 28px"></div>
+<footer style="position: sticky; bottom: 0; padding: 12px 16px 26px; background: #FBF1DC; border-top: 2px solid #1E2B45; display: flex; flex-direction: column; gap: 10px">
+<button type="button" class="btn" onClick="{{startCook}}">Start cooking</button>
+</footer>
+
+<sc-if value="{{videoOpen}}" hint-placeholder-val="{{ false }}">
+<div role="dialog" aria-label="Creator video" style="position: absolute; inset: 0; z-index: 30; background: rgba(30, 43, 69, 0.6)">
+<div style="padding: 16px 18px; display: flex; flex-direction: column; gap: 10px">
+<div style="display: flex; justify-content: space-between; align-items: center">
+<span style="color: #FBF1DC; font-weight: 700; font-size: 14px">Playing from Instagram</span>
+<button type="button" class="icon" aria-label="Close video" onClick="{{closeVideo}}" style="background: #FBF1DC"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12"></path><path d="M18 6L6 18"></path></svg></button>
+</div>
+<div class="ig" role="region" aria-label="Instagram post by @creatorhandle">
+<div style="display: flex; align-items: center; gap: 10px; padding: 12px">
+<span aria-hidden="true" style="width: 36px; height: 36px; border-radius: 18px; background: #E9B53F; border: 2px solid #FFFFFF; outline: 2px solid #C8242B; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 12px">CN</span>
+<span style="flex: 1; display: flex; flex-direction: column"><span style="font-weight: 600; font-size: 14px">creatorhandle</span><span style="font-size: 12px; color: #737373">Original audio</span></span>
+<button type="button" class="igbtn">View profile</button>
+</div>
+<div style="position: relative; height: 470px; background: #F2E2BD; display: flex; align-items: center; justify-content: center; color: #5A6378; font-size: 13px">[Creator's reel playing]<span style="position: absolute; left: 12px; right: 12px; bottom: 12px; height: 4px; border-radius: 2px; background: rgba(255, 255, 255, 0.6)"><span style="display: block; width: 30%; height: 4px; border-radius: 2px; background: #FFFFFF"></span></span></div>
+<div style="padding: 10px 12px 12px; display: flex; flex-direction: column; gap: 4px; font-size: 14px; line-height: 1.4">
+<a href="https://www.instagram.com/" style="color: #0095F6; font-weight: 600; text-decoration: none">View more on Instagram</a>
+<span style="font-weight: 600">12,408 likes</span>
+<span><span style="font-weight: 600">creatorhandle</span> 25-minute white beans with way too much lemon...</span>
+</div>
+</div>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{cooking}}" hint-placeholder-val="{{ false }}">
+<div role="dialog" aria-label="Cooking mode" style="position: absolute; inset: 0; z-index: 20; background: #FBF1DC">
+<div style="position: sticky; top: 0; height: 844px; box-sizing: border-box; padding: 0 24px 32px; display: flex; flex-direction: column; gap: 18px">
+<div style="height: 56px; display: flex; align-items: center; justify-content: space-between">
+<span style="font-size: 14px; font-weight: 700">Cooking mode · Screen stays on</span>
+<button type="button" class="icon" aria-label="Exit cooking mode" onClick="{{stopCook}}"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12"></path><path d="M18 6L6 18"></path></svg></button>
+</div>
+<div style="height: 10px; border-radius: 5px; border: 2px solid #1E2B45; background: #FFFFFF; overflow: hidden"><div style="width: {{cookPct}}%; height: 100%; background: #E9B53F"></div></div>
+<span style="font-family: 'Fraunces', Georgia, serif; font-weight: 900; font-size: 20px">Step {{cookN}} of {{stepCount}}</span>
+<p style="margin: 0; font-size: 26px; line-height: 1.4; font-weight: 500"><sc-for list="{{cur.parts}}" as="p" hint-placeholder-count="3"><sc-if value="{{p.b}}" hint-placeholder-val="{{ false }}"><span class="amt">{{p.t}}</span></sc-if><sc-if value="{{p.plain}}" hint-placeholder-val="{{ true }}"><span>{{p.t}}</span></sc-if></sc-for></p>
+<sc-if value="{{cur.timer}}" hint-placeholder-val="{{ true }}"><button type="button" class="small" style="align-self: flex-start">Start {{cur.timer}} timer</button></sc-if>
+<div style="flex: 1"></div>
+<div style="display: flex; gap: 10px">
+<button type="button" class="btn2" style="width: 120px" onClick="{{cookPrev}}">Back</button>
+<sc-if value="{{notLast}}" hint-placeholder-val="{{ true }}"><button type="button" class="btn" style="flex: 1" onClick="{{cookNext}}">Next step</button></sc-if>
+<sc-if value="{{isLast}}" hint-placeholder-val="{{ false }}"><a href="V2-10-Checkin.dc.html" class="btn" style="flex: 1">I made it</a></sc-if>
+</div>
+</div>
+</div>
+</sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"cardSide":{"editor":"enum","options":["Ingredients","Steps"],"default":"Ingredients"},"$preview":{"width":390,"height":2150}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { servings: 4, flipped: null, video: false, added: false, addedCount: 0, cook: null, have: { beans: false, kale: false, lemon: false, garlic: true, oil: true, broth: false, flakes: true, parm: false, bread: false, salt: true } };
+  }
+  renderVals() {
+    var self = this;
+    var flipped = this.state.flipped === null ? (this.props.cardSide ?? 'Ingredients') === 'Steps' : this.state.flipped;
+    var s = this.state.servings;
+    var mult = s / 2;
+    var have = this.state.have;
+    var fmt = function (n) {
+      var w = Math.floor(n);
+      var f = Math.round((n - w) * 100) / 100;
+      var fr = f === 0.25 ? '¼' : f === 0.5 ? '½' : f === 0.75 ? '¾' : f === 0.13 ? '⅛' : f === 0.38 ? '⅜' : f === 0.63 ? '⅝' : f === 0.88 ? '⅞' : f > 0 ? String(f).slice(1) : '';
+      if (w === 0) return fr || '0';
+      return fr ? (w + fr) : String(w);
+    };
+    var base = [
+      { key: 'beans', name: 'Cannellini beans', note: 'Drained and rinsed', q: 1, u1: 'can (15 oz)', u2: 'cans (15 oz)' },
+      { key: 'kale', name: 'Lacinato kale', note: 'Stems removed, torn', q: 1, u1: 'bunch', u2: 'bunches' },
+      { key: 'lemon', name: 'Lemon', note: 'Zest and juice', q: 1, u1: 'lemon', u2: 'lemons' },
+      { key: 'garlic', name: 'Garlic', note: 'Thinly sliced', q: 3, u1: 'clove', u2: 'cloves' },
+      { key: 'oil', name: 'Olive oil', note: 'Pantry staple', q: 2, u1: 'tbsp', u2: 'tbsp' },
+      { key: 'broth', name: 'Vegetable broth', note: 'Low sodium if you have it', q: 0.5, u1: 'cup', u2: 'cups' },
+      { key: 'flakes', name: 'Red pepper flakes', note: 'Optional heat', q: 0.25, u1: 'tsp', u2: 'tsp' },
+      { key: 'parm', name: 'Parmesan', note: 'Optional, grated', q: 0.25, u1: 'cup', u2: 'cups' },
+      { key: 'bread', name: 'Whole-grain bread', note: 'For serving', q: 2, u1: 'slice', u2: 'slices' },
+      { key: 'salt', name: 'Salt and black pepper', note: 'Pantry staple', q: null, u1: '', u2: '' }
+    ];
+    var amtOf = {};
+    var items = base.map(function (b) {
+      var amt = 'To taste';
+      if (b.q !== null) {
+        var n = b.q * mult;
+        var unit = n > 1 ? b.u2 : b.u1;
+        amt = fmt(n) + (unit ? ' ' + unit : '');
+      }
+      amtOf[b.key] = amt;
+      var isHave = !!have[b.key];
+      return {
+        id: 'r-' + b.key, name: b.name, note: b.note, amt: amt, have: isHave, notHave: !isHave,
+        toggle: function () { var next = Object.assign({}, self.state.have); next[b.key] = !next[b.key]; self.setState({ have: next }); }
+      };
+    });
+    var T = function (t) { return { t: t, b: false, plain: true }; };
+    var A = function (t) { return { t: t, b: true, plain: false }; };
+    var steps = [
+      { parts: [T('Warm '), A(amtOf.oil + ' olive oil'), T(' in a large skillet over medium heat. Add '), A(amtOf.garlic + ' garlic'), T(', sliced, and '), A(amtOf.flakes + ' red pepper flakes'), T('. Stir until fragrant, about 1 minute.')], timer: '1 min' },
+      { parts: [T('Add '), A(amtOf.beans + ' cannellini beans'), T(' and '), A(amtOf.broth + ' vegetable broth'), T('. Simmer 4 to 5 minutes, pressing a few beans into the pan to thicken the sauce.')], timer: '5 min' },
+      { parts: [T('Stir in '), A(amtOf.kale + ' lacinato kale'), T(', a handful at a time, until it wilts, about 3 minutes.')], timer: '3 min' },
+      { parts: [T('Off the heat, add the zest and juice of '), A(amtOf.lemon), T('. Season with salt and pepper. Top with '), A(amtOf.parm + ' parmesan'), T(' and serve with '), A(amtOf.bread + ' whole-grain bread'), T(', toasted.')], timer: '' }
+    ].map(function (st, i) { return Object.assign({}, st, { n: i + 1 }); });
+    var haveCount = items.filter(function (i) { return i.have; }).length;
+    var toBuy = items.length - haveCount;
+    var servingOpts = [2, 4].map(function (n) {
+      return { label: 'Serves ' + n, selected: n === s, notSelected: n !== s, pick: function () { self.setState({ servings: n }); } };
+    });
+    var nutrients = [
+      { value: '12 g', label: 'Fiber', note: 'incl. 3 g soluble', dv: 43 },
+      { value: '16 g', label: 'Protein', note: 'all plant-based', dv: 32 },
+      { value: '3 g', label: 'Saturated fat', note: 'keep this low', dv: 15 },
+      { value: '480 mg', label: 'Sodium', note: 'low-sodium broth', dv: 21 }
+    ];
+    var cook = this.state.cook;
+    var cur = steps[cook === null ? 0 : cook];
+    return {
+      nutrients: nutrients,
+      openVideo: function () { self.setState({ video: true }); },
+      closeVideo: function () { self.setState({ video: false }); },
+      videoOpen: this.state.video,
+      deg: flipped ? 180 : 0,
+      frontHidden: flipped,
+      backHidden: !flipped,
+      frontPE: flipped ? 'none' : 'auto',
+      backPE: flipped ? 'auto' : 'none',
+      flip: function () { self.setState({ flipped: !flipped }); },
+      items: items,
+      steps: steps,
+      servings: s,
+      dec: function () { self.setState({ servings: Math.max(1, s - 1) }); },
+      inc: function () { self.setState({ servings: Math.min(12, s + 1) }); },
+      haveCount: haveCount,
+      toBuy: toBuy,
+      added: this.state.added,
+      notAdded: !this.state.added,
+      addedCount: this.state.addedCount,
+      badge: this.state.added ? '✓' : toBuy,
+      compactLabel: this.state.added ? 'On your list' : 'Add ' + toBuy + ' items to my list',
+      addToList: function () { self.setState({ added: true, addedCount: toBuy }); },
+      cooking: cook !== null,
+      cur: cur,
+      cookN: (cook || 0) + 1,
+      stepCount: steps.length,
+      cookPct: Math.round(((cook || 0) + 1) / steps.length * 100),
+      notLast: (cook || 0) < steps.length - 1,
+      isLast: (cook || 0) === steps.length - 1,
+      startCook: function () { self.setState({ cook: 0 }); },
+      stopCook: function () { self.setState({ cook: null }); },
+      cookNext: function () { self.setState({ cook: Math.min(steps.length - 1, (self.state.cook || 0) + 1) }); },
+      cookPrev: function () { var c = self.state.cook || 0; self.setState({ cook: c === 0 ? null : c - 1 }); }
+    };
+  }
+}
+</script>
+</body>
+</html>

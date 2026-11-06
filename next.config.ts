@@ -9,5 +9,7 @@ const nextConfig: NextConfig = {
   trailingSlash: true,
   images: { unoptimized: true },
   basePath,
+  // Exposed so full-page navigations (location.href) can include the base path.
+  env: { NEXT_PUBLIC_BASE_PATH: basePath },
 };
 export default nextConfig;

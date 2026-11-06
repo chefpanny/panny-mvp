@@ -16,7 +16,7 @@ export default function Debug() {
   return (
     <main style={{ padding: 24, display: 'flex', flexDirection: 'column', gap: 16 }}>
       <h1 style={{ font: '900 32px/1 var(--font-display)' }}>Debug</h1>
-      <Button onClick={() => { if (confirm('Clear all Panny data on this device?')) { resetAll(); location.href = '/'; } }}>Start over</Button>
+      <Button onClick={() => { if (confirm('Clear all Panny data on this device?')) { resetAll(); location.href = `${process.env.NEXT_PUBLIC_BASE_PATH ?? ''}/`; } }}>Start over</Button>
       <h2 style={{ font: '900 22px/1.1 var(--font-display)' }}>Events ({events.length})</h2>
       <ol reversed style={{ margin: 0, paddingLeft: 24, fontSize: 13, display: 'flex', flexDirection: 'column-reverse', gap: 6 }}>
         {events.map((e, i) => (
